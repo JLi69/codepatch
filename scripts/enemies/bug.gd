@@ -9,6 +9,7 @@ class_name Bug
 @export var max_chase_distance: float = 320.0
 @export var max_health: int = 4
 @export var bullet_scene: PackedScene
+@export var explosion_scene: PackedScene
 # How long it takes for the enemy to shoot a bullet (in seconds)
 @export var bullet_cooldown: float = 1.0
 @onready var shoot_timer: float = bullet_cooldown
@@ -18,14 +19,25 @@ var current_path_index: int = 0
 const ARRIVE_DISTANCE: float = 8.0
 var target_tile_pos: Vector2i
 
-var pause_timer: float = 0.0
-var pause_interval: float = randf_range(3.0, 5.0)
+var pause_timer: float = 0.5
+var pause_interval: float = 1.0
 
 const UPDATE_PATH_INTERVAL: float = 0.25
 var update_path_timer: float = UPDATE_PATH_INTERVAL
 
 func _ready() -> void:
+	$Healthbar.healthbar_color = $AnimatedSprite2D.modulate
+	$Healthbar.hide()
 	rotation = randf_range(0.0, 2.0 * PI)
+	speed *= randf_range(0.9, 1.25)
+
+	# Explosion effect when the enemy first spawns in
+	if level:
+		var explosion: GPUParticles2D = explosion_scene.instantiate()
+		explosion.global_position = global_position
+		explosion.scale *= 0.4
+		explosion.modulate = $AnimatedSprite2D.modulate
+		level.add_child(explosion)
 
 # Returns the tile coordinates that this enemy is currently occupying
 func get_tile_pos() -> Vector2i:
@@ -73,7 +85,7 @@ func calculate_velocity() -> Vector2:
 		return Vector2.ZERO	
 
 	if current_path_index >= len(path):
-		return Vector2.ZERO
+		return Vector2.ZERO	
 
 	var dist: float = (path[current_path_index] - global_position).length()
 	if dist < ARRIVE_DISTANCE or current_path_index == 0:
@@ -94,13 +106,13 @@ func shoot_bullet(offset: float = 0.0) -> void:
 	var spawn_point: Node2D = get_node_or_null("BulletSpawnPoint")
 	if spawn_point == null:
 		return
-	# var bullet: EnemyBullet = bullet_scene.instantiate()
-	# var angle = (player.position - global_position).angle() + offset
-	# var dir = Vector2(cos(angle), sin(angle))
-	# bullet.position = spawn_point.global_position + dir * 4.0
-	# bullet.dir = dir
-	# bullet.speed += speed
-	# level.add_child(bullet)
+	var bullet: Bullet = bullet_scene.instantiate()
+	var angle = (player.position - global_position).angle() + offset
+	var dir = Vector2(cos(angle), sin(angle))
+	bullet.position = spawn_point.global_position + dir * 4.0
+	bullet.dir = dir
+	bullet.speed += speed
+	level.add_child(bullet)
 
 # Shoots bullets at the player, this function should be overridden if an enemy
 # has a different shooting pattern
@@ -124,6 +136,9 @@ func update_shooting(delta: float) -> void:
 
 	if !in_shooting_range():
 		return
+
+	if len(path) - 1 - current_path_index >= 15:
+		return
 	
 	shoot()
 	shoot_timer = bullet_cooldown
@@ -140,10 +155,18 @@ func handle_path_update(delta: float) -> bool:
 		return true
 	return false
 
+func explode() -> void:
+	queue_free()
+	var explosion: GPUParticles2D = explosion_scene.instantiate()
+	explosion.global_position = global_position
+	explosion.scale *= 0.4
+	explosion.modulate = $AnimatedSprite2D.modulate
+	level.add_child(explosion)
+
 func _process(delta: float) -> void:
-	# $Healthbar.update_bar(health, max_health)
+	$Healthbar.update_bar(health, max_health)
 	if health <= 0:
-		queue_free()
+		explode()
 		return
 	
 	if player.health <= 0:
@@ -152,17 +175,23 @@ func _process(delta: float) -> void:
 	handle_path_update(delta)
 	update_shooting(delta)
 
-	if velocity.length() > 0.0:
-		var target_rotation: float = velocity.angle() + PI / 2.0
+	if velocity.length() > 0.0 and pause_timer <= 0.0:
 		var dir: Vector2 = velocity.normalized()
 		var diff: float = 1.25 * PI * delta
-		var counterclockwise: Vector2 = Vector2(cos(rotation - PI / 2.0 + diff), sin(rotation - PI / 2.0 + diff))
-		var clockwise: Vector2 = Vector2(cos(rotation - PI / 2.0 - diff), sin(rotation - PI / 2.0 - diff))
+		var counterclockwise: Vector2 = Vector2(
+			cos(rotation - PI / 2.0 + diff), 
+			sin(rotation - PI / 2.0 + diff)
+		)
+		var clockwise: Vector2 = Vector2(
+			cos(rotation - PI / 2.0 - diff), 
+			sin(rotation - PI / 2.0 - diff)
+		)
 		if counterclockwise.dot(dir) >= clockwise.dot(dir) and counterclockwise.dot(dir) < 0.996:
 			rotation += diff
 		elif counterclockwise.dot(dir) < clockwise.dot(dir) and clockwise.dot(dir) < 0.996:
 			rotation -= diff
 		else:
+			var target_rotation: float = velocity.angle() + PI / 2.0
 			rotation = target_rotation
 
 	if pause_interval > 0.0:
@@ -184,6 +213,6 @@ func damage(amt: int) -> void:
 	health = max(health, 0)
 
 func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
-	if body is PlayerBullet:
+	if body.is_in_group("player_bullet") and body is Bullet:
 		body.explode()
 		damage(body.damage)

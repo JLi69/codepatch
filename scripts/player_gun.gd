@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	shoot_cooldown = max(shoot_cooldown - delta, 0.0)
 	if shoot_cooldown <= 0.0 and Input.is_action_pressed("shoot"):
 		shoot_cooldown = player.shoot_cooldown
-		var bullet: PlayerBullet = player_bullet_scene.instantiate()
+		var bullet: Bullet = player_bullet_scene.instantiate()
 		bullet.global_position = $BulletSpawn.global_position
 		bullet.dir = Vector2(cos(rotation), sin(rotation))
 		bullet.speed += player.speed

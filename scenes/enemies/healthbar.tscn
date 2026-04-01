@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bmvxbv854lfkj"]
+
+[ext_resource type="Script" uid="uid://c73gae5olfxw6" path="res://scripts/enemies/healthbar.gd" id="1_hbmly"]
+
+[node name="Healthbar" type="ColorRect" unique_id=1693914397]
+custom_minimum_size = Vector2(12, 2)
+color = Color(0.27387273, 0.27387273, 0.27387273, 1)
+script = ExtResource("1_hbmly")
+healthbar_color = Color(1, 1, 1, 1)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1245354374]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 2.0

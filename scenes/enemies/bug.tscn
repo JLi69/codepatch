@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://dmtjl5wtign51"]
 
 [ext_resource type="Script" uid="uid://basdh5a7jm1i2" path="res://scripts/enemies/bug.gd" id="1_evhp6"]
+[ext_resource type="PackedScene" uid="uid://22l51veb71vf" path="res://scenes/explosion.tscn" id="2_0t6l1"]
 [ext_resource type="Texture2D" uid="uid://dso1088y6e4uq" path="res://assets/bug.png" id="2_1cphh"]
+[ext_resource type="PackedScene" uid="uid://dixpaau1h8236" path="res://scenes/enemies/enemy_bullet.tscn" id="2_t77sq"]
+[ext_resource type="PackedScene" uid="uid://bmvxbv854lfkj" path="res://scenes/enemies/healthbar.tscn" id="4_0t6l1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sp1hu"]
 atlas = ExtResource("2_1cphh")
@@ -36,6 +39,8 @@ z_index = 1
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_evhp6")
+bullet_scene = ExtResource("2_t77sq")
+explosion_scene = ExtResource("2_0t6l1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=472215569]
 sprite_frames = SubResource("SpriteFrames_hr7jg")
@@ -50,5 +55,14 @@ shape = SubResource("RectangleShape2D_6o20r")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox" unique_id=604529958]
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_evhp6")
+
+[node name="Healthbar" parent="." unique_id=1693914397 instance=ExtResource("4_0t6l1")]
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+offset_bottom = -10.0
+
+[node name="BulletSpawnPoint" type="Node2D" parent="." unique_id=792131862]
+position = Vector2(0, -8)
 
 [connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]

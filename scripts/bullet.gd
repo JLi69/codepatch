@@ -1,15 +1,18 @@
 extends Area2D
 
-class_name PlayerBullet
+class_name Bullet
 
 var speed: float = 240.0
 var dir: Vector2 = Vector2.ZERO
 var damage: int = 1
 
 @export var explosion_scene: PackedScene
+@export var use_modulate_for_explosion: bool = false
+@export var explosion_color: Color = Color.WHITE
 
 func _process(delta: float) -> void:
 	position += delta * dir * speed
+	rotation += 4.0 * PI * delta
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is TileMapLayer:
@@ -21,6 +24,9 @@ func explode() -> void:
 	if level:
 		var explosion: GPUParticles2D = explosion_scene.instantiate()
 		explosion.global_position = global_position
-		explosion.scale *= 0.3
-		explosion.modulate = Color8(0xa6, 0xff, 0x00)
+		explosion.scale *= 0.25
+		if use_modulate_for_explosion:
+			explosion.modulate = modulate
+		else:
+			explosion.modulate = explosion_color 
 		level.add_child(explosion)

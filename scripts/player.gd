@@ -35,3 +35,7 @@ func get_tile_position() -> Vector2i:
 		floori(global_position.x / level.tile_sz.x),
 		floori(global_position.y / level.tile_sz.y)
 	)
+
+func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
+	if area is Bullet:
+		area.explode()

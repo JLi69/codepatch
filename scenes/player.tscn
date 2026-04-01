@@ -9,6 +9,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(9, 9)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlg0r"]
+radius = 8.0
+
 [node name="Player" type="CharacterBody2D" unique_id=815218065]
 script = ExtResource("1_g2els")
 
@@ -27,3 +30,10 @@ player_bullet_scene = ExtResource("5_qlg0r")
 
 [node name="BulletSpawn" type="Node2D" parent="PlayerGun" unique_id=1890512037]
 position = Vector2(7, 0)
+
+[node name="BulletHitbox" type="Area2D" parent="." unique_id=1441160285]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox" unique_id=1155058624]
+shape = SubResource("CircleShape2D_qlg0r")
+
+[connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]

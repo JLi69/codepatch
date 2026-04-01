@@ -5,12 +5,19 @@ class_name Level
 var level_num: int = 0
 @onready var player: Player = get_node_or_null("/root/Main/Player")
 @onready var tile_sz: Vector2i = $TileMapLayer.tile_set.tile_size
+var enemy_spawn_timer: float = 8.0
+var enemy_spawn_interval: float = 30.0
 
 var astar_grid: AStarGrid2D
 
 static var enemy_scenes: Dictionary = {
 	"bug" : preload("uid://dmtjl5wtign51"),
 }
+
+static var weights: Dictionary = {
+	"bug" : 10.0,
+}
+var total_weight: float = 0.0
 
 const EMPTY: Vector2i = Vector2i(0, 0)
 const WALL: Vector2i = Vector2i(1, 0)
@@ -36,13 +43,17 @@ func get_level_size() -> int:
 		_:
 			return 12
 
-func spawn_enemy(id: String, tile_pos: Vector2i) -> void:
+func spawn_enemy(id: String, tile_pos: Vector2i) -> bool:
 	if !(id in enemy_scenes):
-		return
+		return false
+
+	if get_tile(tile_pos) != EMPTY:
+		return false
 
 	var enemy = enemy_scenes[id].instantiate()
 	enemy.global_position = Vector2(tile_pos * tile_sz) + tile_sz / 2.0 
 	add_child(enemy)
+	return true
 
 func _ready() -> void:
 	var size: int = get_level_size()
@@ -85,7 +96,8 @@ func _ready() -> void:
 		if tile_data.get_collision_polygons_count(0) > 0:
 			astar_grid.set_point_solid(cell)
 	
-	spawn_enemy("bug", get_tile_pos($PlayerSpawn.global_position) + Vector2i(0, 3))
+	for id in weights:
+		total_weight += weights[id]
 
 func set_tile(pos: Vector2i, type: Vector2i) -> void:
 	$TileMapLayer.set_cell(pos, 0, type)
@@ -189,3 +201,34 @@ func generate_level(width: int, height: int) -> void:
 						break	
 	for tile_pos in outline:
 		set_tile(tile_pos, WALL)
+
+func spawn_enemies() -> void:
+	var enemy_count: int = randi_range(2, 5)
+	for i in range(enemy_count):
+		var attempts_left: int = 3
+		while attempts_left > 0:
+			var dist: float = randf_range(5.0, 24.0)
+			var angle: float = randf_range(0.0, 2.0 * PI)
+			var rand_pos: Vector2i = Vector2i(
+				floori(dist * cos(angle)),
+				floori(dist * sin(angle)),
+			)
+			var id: String = ""
+			var randval: float = randf_range(0.0, total_weight)
+			for enemy_id in weights:
+				randval -= weights[enemy_id]
+				if randval <= 0.0:
+					id = enemy_id
+					break
+			if spawn_enemy(id, rand_pos + get_tile_pos(player.global_position)):
+				break
+			attempts_left -= 1
+
+func _process(delta: float) -> void:
+	# Spawn enemies
+	enemy_spawn_timer -= delta
+	if enemy_spawn_timer < 0.0:
+		spawn_enemies()
+		enemy_spawn_timer = enemy_spawn_interval * randf_range(1.0, 1.25)
+		enemy_spawn_interval *= 0.95
+		enemy_spawn_interval = max(enemy_spawn_interval, 15.0)

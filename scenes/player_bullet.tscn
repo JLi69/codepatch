@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://cuq6wxunubqax"]
 
 [ext_resource type="Texture2D" uid="uid://b4plk2maqxf3s" path="res://assets/player_bullet.png" id="1_4g3gs"]
-[ext_resource type="Script" uid="uid://sj08oox8crk0" path="res://scripts/player_bullet.gd" id="1_46jqs"]
+[ext_resource type="Script" uid="uid://sj08oox8crk0" path="res://scripts/bullet.gd" id="1_46jqs"]
 [ext_resource type="PackedScene" uid="uid://22l51veb71vf" path="res://scenes/explosion.tscn" id="2_0cue5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46jqs"]
 radius = 4.0
 
-[node name="PlayerBullet" type="Area2D" unique_id=361972777]
+[node name="PlayerBullet" type="Area2D" unique_id=361972777 groups=["player_bullet"]]
 scale = Vector2(0.65, 0.65)
 script = ExtResource("1_46jqs")
 explosion_scene = ExtResource("2_0cue5")
+explosion_color = Color(0.6509804, 1, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=716799077]
 texture = ExtResource("1_4g3gs")
