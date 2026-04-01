@@ -23,6 +23,7 @@ scale_max = 5.0
 scale_curve = SubResource("CurveTexture_nfeox")
 
 [node name="Explosion" type="GPUParticles2D" unique_id=818659612]
+z_index = 2
 emitting = false
 amount = 24
 texture = ExtResource("1_17npe")

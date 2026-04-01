@@ -6,6 +6,12 @@ var level_num: int = 0
 @onready var player: Player = get_node_or_null("/root/Main/Player")
 @onready var tile_sz: Vector2i = $TileMapLayer.tile_set.tile_size
 
+var astar_grid: AStarGrid2D
+
+static var enemy_scenes: Dictionary = {
+	"bug" : preload("uid://dmtjl5wtign51"),
+}
+
 const EMPTY: Vector2i = Vector2i(0, 0)
 const WALL: Vector2i = Vector2i(1, 0)
 const ROOM_SIZE: int = 12
@@ -30,6 +36,14 @@ func get_level_size() -> int:
 		_:
 			return 12
 
+func spawn_enemy(id: String, tile_pos: Vector2i) -> void:
+	if !(id in enemy_scenes):
+		return
+
+	var enemy = enemy_scenes[id].instantiate()
+	enemy.global_position = Vector2(tile_pos * tile_sz) + tile_sz / 2.0 
+	add_child(enemy)
+
 func _ready() -> void:
 	var size: int = get_level_size()
 	var spawn_room: Vector2i = Vector2i(randi_range(0, size - 1), randi_range(0, size - 1))
@@ -38,13 +52,49 @@ func _ready() -> void:
 	$PlayerSpawn.global_position.y = (float(spawn_room.y) * ROOM_SIZE + ROOM_SIZE / 2.0) * tile_sz.y
 	generate_level(size, size)
 	if player:
-		player.global_position = $PlayerSpawn.global_position	
+		player.global_position = $PlayerSpawn.global_position
+
+	var top_left: Vector2i = Vector2i.ZERO
+	var bottom_right: Vector2i = Vector2i.ZERO
+	var first: bool = true
+	for cell in $TileMapLayer.get_used_cells():
+		if first:
+			top_left = cell
+			bottom_right = cell
+			first = false
+		else:
+			top_left.x = min(top_left.x, cell.x)
+			top_left.y = min(top_left.y, cell.y)
+			bottom_right.x = max(bottom_right.x, cell.x)
+			bottom_right.y = max(bottom_right.y, cell.y)
+	bottom_right += Vector2i(1, 1)
+	var used_rect: Rect2i = Rect2i(top_left, bottom_right - top_left)
+
+	# Initialize the A* Grid
+	astar_grid = AStarGrid2D.new()
+	astar_grid.region = used_rect
+	var tile_set: TileSet = $TileMapLayer.tile_set
+	astar_grid.cell_size = tile_set.tile_size
+	astar_grid.update()
+	for cell in $TileMapLayer.get_used_cells():
+		var tile_data: TileData = $TileMapLayer.get_cell_tile_data(cell)
+		if tile_data == null:
+			continue
+		# Check if the tile has any polygons representing its collision, 
+		# if it does, then mark it as a solid tile
+		if tile_data.get_collision_polygons_count(0) > 0:
+			astar_grid.set_point_solid(cell)
+	
+	spawn_enemy("bug", get_tile_pos($PlayerSpawn.global_position) + Vector2i(0, 3))
 
 func set_tile(pos: Vector2i, type: Vector2i) -> void:
 	$TileMapLayer.set_cell(pos, 0, type)
 
 func get_tile(pos: Vector2i) -> Vector2i:
 	return $TileMapLayer.get_cell_atlas_coords(pos)
+
+func get_tile_pos(pos: Vector2) -> Vector2i:
+	return Vector2i(floori(pos.x / tile_sz.x), floori(pos.y / tile_sz.y))
 
 func clear_wall(current: Vector2i, next: Vector2i) -> void:
 	var room_pos: Vector2i = current * ROOM_SIZE

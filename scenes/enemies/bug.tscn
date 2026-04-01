@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dmtjl5wtign51"]
+
+[ext_resource type="Script" uid="uid://basdh5a7jm1i2" path="res://scripts/enemies/bug.gd" id="1_evhp6"]
+[ext_resource type="Texture2D" uid="uid://dso1088y6e4uq" path="res://assets/bug.png" id="2_1cphh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp1hu"]
+atlas = ExtResource("2_1cphh")
+region = Rect2(0, 0, 18, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xs7f"]
+atlas = ExtResource("2_1cphh")
+region = Rect2(18, 0, 18, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hr7jg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp1hu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xs7f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6o20r"]
+size = Vector2(6, 5.8333335)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evhp6"]
+size = Vector2(20, 18)
+
+[node name="Bug" type="CharacterBody2D" unique_id=564781483]
+z_index = 1
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_evhp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=472215569]
+sprite_frames = SubResource("SpriteFrames_hr7jg")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1453455090]
+position = Vector2(0, 0.08333335)
+shape = SubResource("RectangleShape2D_6o20r")
+
+[node name="BulletHitbox" type="Area2D" parent="." unique_id=153703781]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox" unique_id=604529958]
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_evhp6")
+
+[connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]
