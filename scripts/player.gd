@@ -2,8 +2,9 @@ extends CharacterBody2D
 
 class_name Player
 
+var shoot_cooldown: float = 0.5
+# Stats that can be upgraded
 const DEFAULT_SPEED: float = 96.0
-
 var speed: float = DEFAULT_SPEED
 
 func _process(_delta: float) -> void:

@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://c43j6uibbak5m" path="res://assets/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cb5s3t67ed2l4" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://c5swaeta4slkg" path="res://assets/player_gun.png" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://bt63a25pcaj2a" path="res://scripts/player_gun.gd" id="4_dqkch"]
+[ext_resource type="PackedScene" uid="uid://cuq6wxunubqax" path="res://scenes/player_bullet.tscn" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(9, 9)
@@ -15,3 +18,12 @@ texture = ExtResource("1_3vyb7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1649218163]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_3vyb7")
+
+[node name="PlayerGun" type="Sprite2D" parent="." unique_id=1833113933]
+position = Vector2(16, 0)
+texture = ExtResource("3_qhqgy")
+script = ExtResource("4_dqkch")
+player_bullet_scene = ExtResource("5_qlg0r")
+
+[node name="BulletSpawn" type="Node2D" parent="PlayerGun" unique_id=1890512037]
+position = Vector2(7, 0)

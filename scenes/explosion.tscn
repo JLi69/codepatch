@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://22l51veb71vf"]
+
+[ext_resource type="Texture2D" uid="uid://kysoxnvlil2e" path="res://assets/explosion_particle.png" id="1_17npe"]
+[ext_resource type="Script" uid="uid://dk1h3lxkiyd45" path="res://scripts/one_shot_particle.gd" id="2_nfeox"]
+
+[sub_resource type="Curve" id="Curve_17npe"]
+_limits = [0.0, 2.5, 0.0, 1.0]
+_data = [Vector2(0, 0.5127709), 0.0, 0.0, 0, 0, Vector2(0.19330856, 2.5), 0.0, 0.0, 0, 0, Vector2(0.39033458, 1.2674148), -6.286429, -6.286429, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_nfeox"]
+curve = SubResource("Curve_17npe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3oo6d"]
+particle_flag_disable_z = true
+angular_velocity_min = 179.99998
+angular_velocity_max = 359.99997
+radial_velocity_min = 127.99998
+radial_velocity_max = 199.99997
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_nfeox")
+
+[node name="Explosion" type="GPUParticles2D" unique_id=818659612]
+emitting = false
+amount = 24
+texture = ExtResource("1_17npe")
+one_shot = true
+explosiveness = 0.9
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_3oo6d")
+script = ExtResource("2_nfeox")
