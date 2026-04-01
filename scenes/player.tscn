@@ -2,9 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://c43j6uibbak5m" path="res://assets/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cb5s3t67ed2l4" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://22l51veb71vf" path="res://scenes/explosion.tscn" id="2_fjrip"]
 [ext_resource type="Texture2D" uid="uid://c5swaeta4slkg" path="res://assets/player_gun.png" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://bt63a25pcaj2a" path="res://scripts/player_gun.gd" id="4_dqkch"]
 [ext_resource type="PackedScene" uid="uid://cuq6wxunubqax" path="res://scenes/player_bullet.tscn" id="5_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://bmvxbv854lfkj" path="res://scenes/enemies/healthbar.tscn" id="6_tuyoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(9, 9)
@@ -14,6 +16,7 @@ radius = 8.0
 
 [node name="Player" type="CharacterBody2D" unique_id=815218065]
 script = ExtResource("1_g2els")
+explosion_scene = ExtResource("2_fjrip")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1389078752]
 texture = ExtResource("1_3vyb7")
@@ -35,5 +38,12 @@ position = Vector2(7, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox" unique_id=1155058624]
 shape = SubResource("CircleShape2D_qlg0r")
+
+[node name="Healthbar" parent="." unique_id=1693914397 instance=ExtResource("6_tuyoq")]
+offset_left = -6.0
+offset_top = -11.0
+offset_right = 6.0
+offset_bottom = -9.0
+healthbar_color = Color(0.47718537, 0.7402852, 0, 1)
 
 [connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]

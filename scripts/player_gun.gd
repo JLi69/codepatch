@@ -17,6 +17,9 @@ func update_transform() -> void:
 		scale.y = -size
 
 func _process(delta: float) -> void:
+	if player.health <= 0:
+		return
+
 	update_transform()
 
 	# Shoot bullets

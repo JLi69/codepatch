@@ -64,6 +64,8 @@ func _ready() -> void:
 	generate_level(size, size)
 	if player:
 		player.global_position = $PlayerSpawn.global_position
+		var camera: Camera2D = $/root/Main/Player/Camera2D
+		camera.position_smoothing_enabled = false
 
 	var top_left: Vector2i = Vector2i.ZERO
 	var bottom_right: Vector2i = Vector2i.ZERO
@@ -226,7 +228,8 @@ func spawn_enemies() -> void:
 
 func _process(delta: float) -> void:
 	# Spawn enemies
-	enemy_spawn_timer -= delta
+	if player.health > 0:
+		enemy_spawn_timer -= delta
 	if enemy_spawn_timer < 0.0:
 		spawn_enemies()
 		enemy_spawn_timer = enemy_spawn_interval * randf_range(1.0, 1.25)
