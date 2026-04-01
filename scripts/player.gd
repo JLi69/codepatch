@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
+class_name Player
+
 const DEFAULT_SPEED: float = 96.0
 
 var speed: float = DEFAULT_SPEED
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	velocity = Vector2.ZERO
 	
 	# Movement
@@ -20,5 +22,5 @@ func _process(delta: float) -> void:
 	
 	velocity = velocity.normalized() * speed
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	move_and_slide()

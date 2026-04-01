@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="codepatch"
+config/name="CodePatch"
 run/main_scene="uid://c1620ywc51r0b"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://p3nqwiefsgp1"

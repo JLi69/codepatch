@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://c1620ywc51r0b"]
 
 [ext_resource type="PackedScene" uid="uid://dgjgeg20wsu0l" path="res://scenes/level.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://bi6qy7dw4w0ss" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://d2mkxvtm6be13" path="res://scenes/player.tscn" id="2_0wfyh"]
 
 [node name="Main" type="Node2D" unique_id=1303435590]
+script = ExtResource("1_sugp2")
 
 [node name="Level" parent="." unique_id=862313325 instance=ExtResource("1_o5qli")]
 
 [node name="Player" parent="." unique_id=694122342 instance=ExtResource("2_0wfyh")]
-position = Vector2(62, 64)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=429329471]
 zoom = Vector2(2, 2)
