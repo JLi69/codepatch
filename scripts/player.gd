@@ -10,6 +10,7 @@ var shoot_cooldown: float = 0.5
 
 var health: int = max_health
 var score: int = 0
+var patch_files: int = 0
 
 @export var explosion_scene: PackedScene
 @onready var hud: HUD = $/root/Main.get_hud()
@@ -42,6 +43,7 @@ func _process(_delta: float) -> void:
 
 	hud.set_hp(health, max_health)
 	hud.set_score(score)
+	hud.set_patch_files(patch_files)
 	$Healthbar.update_bar(health, max_health)
 
 	velocity = Vector2.ZERO

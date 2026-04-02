@@ -17,3 +17,5 @@ func _process(delta: float) -> void:
 	if player.visible:
 		time += delta
 		$UI/HUD.set_time(time)
+		var level: Level = get_node_or_null("Level")
+		$UI/HUD.set_survive_timer(level.survive_timer, level.run_survive_timer)

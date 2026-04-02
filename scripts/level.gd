@@ -7,10 +7,13 @@ var level_num: int = 0
 @onready var tile_sz: Vector2i = $TileMapLayer.tile_set.tile_size
 var enemy_spawn_timer: float = 8.0
 var enemy_spawn_interval: float = 30.0
-var corruption_timer: float = 120.0
+var corruption_timer: float = 150.0
 var corruption_interval: float = 12.0
 var corruption_count: int = 0
+var survive_timer: float = 60.0
+var run_survive_timer: bool = false
 @export var explosion_scene: PackedScene
+@export var patch_file_scene: PackedScene
 
 var astar_grid: AStarGrid2D
 
@@ -43,16 +46,16 @@ const ADJ: Array[Vector2i] = [
 
 func get_level_size() -> int:
 	match level_num:
-		1:
+		0, 1:
 			return 5
 		2, 3:
-			return 7
+			return 6
 		4, 5, 6:
-			return 9
+			return 7
 		7:
-			return 11
+			return 8
 		_:
-			return 12
+			return 9
 
 func spawn_enemy(id: String, tile_pos: Vector2i) -> bool:
 	if !(id in enemy_scenes):
@@ -78,23 +81,29 @@ func _ready() -> void:
 		var camera: Camera2D = $/root/Main/Player/Camera2D
 		camera.position_smoothing_enabled = false
 
-	var top_left: Vector2i = Vector2i.ZERO
-	var bottom_right: Vector2i = Vector2i.ZERO
-	var first: bool = true
-	for cell in $TileMapLayer.get_used_cells():
-		if first:
-			top_left = cell
-			bottom_right = cell
-			first = false
-		else:
-			top_left.x = min(top_left.x, cell.x)
-			top_left.y = min(top_left.y, cell.y)
-			bottom_right.x = max(bottom_right.x, cell.x)
-			bottom_right.y = max(bottom_right.y, cell.y)
-	bottom_right += Vector2i(1, 1)
-	var used_rect: Rect2i = Rect2i(top_left, bottom_right - top_left)
-
+	var rooms: Array = []
+	for rx in range(size):
+		for ry in range(size):
+			if Vector2i(rx, ry) == spawn_room:
+				continue
+			rooms.push_back(Vector2i(rx, ry))
+	# Add the patch files
+	var patch_rooms: Array = []
+	for i in range(3):
+		var index: int = randi() % len(rooms)
+		while index in patch_rooms:
+			index += 1
+			index %= len(rooms)
+		patch_rooms.push_back(rooms[index])
+	for room: Vector2i in patch_rooms:
+		var tile_pos: Vector2i = room * ROOM_SIZE + Vector2i(randi_range(2, ROOM_SIZE - 2), randi_range(2, ROOM_SIZE - 2))
+		var pos: Vector2 = Vector2(tile_pos * tile_sz) + tile_sz / 2.0
+		var patch_file = patch_file_scene.instantiate()
+		patch_file.global_position = pos
+		add_child(patch_file)
+	
 	# Initialize the A* Grid
+	var used_rect: Rect2i = $TileMapLayer.get_used_rect()
 	astar_grid = AStarGrid2D.new()
 	astar_grid.region = used_rect
 	var tile_set: TileSet = $TileMapLayer.tile_set
@@ -239,7 +248,7 @@ func spawn_enemies() -> void:
 
 func corrupt_tiles(count: int) -> void:
 	for i in range(count):
-		var dist: float = randf_range(6.0, 24.0)
+		var dist: float = randf_range(7.0, 24.0)
 		var angle: float = randf_range(0.0, 2.0 * PI)
 		var rand_pos: Vector2i = Vector2i(
 			floori(dist * cos(angle)),
@@ -255,13 +264,17 @@ func corrupt_tiles(count: int) -> void:
 		add_child(explosion)
 
 func _process(delta: float) -> void:
+	if player.health > 0 and run_survive_timer:
+		survive_timer -= delta
+
 	# Spawn enemies
 	if player.health > 0:
 		enemy_spawn_timer -= delta
 	if enemy_spawn_timer < 0.0:
 		spawn_enemies()
 		enemy_spawn_timer = enemy_spawn_interval * randf_range(1.0, 1.25)
-		enemy_spawn_interval = max(enemy_spawn_interval * 0.9, 15.0)
+		if player.patch_files < 3:
+			enemy_spawn_interval = max(enemy_spawn_interval * 0.9, 15.0)
 	
 	corruption_timer -= delta
 	if corruption_timer < 0.0:

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cyfg8mj2yi3xq" path="res://assets/tiles.png" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://ch0outhhr2ca8" path="res://scripts/level.gd" id="1_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://22l51veb71vf" path="res://scenes/explosion.tscn" id="2_w8frs"]
+[ext_resource type="PackedScene" uid="uid://b8b2xwl6hx2hu" path="res://scenes/patch_file.tscn" id="3_mx8sn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w7c3h"]
 texture = ExtResource("1_2q6dc")
@@ -22,8 +23,10 @@ sources/0 = SubResource("TileSetAtlasSource_w7c3h")
 [node name="Level" type="Node2D" unique_id=862313325]
 script = ExtResource("1_w7c3h")
 explosion_scene = ExtResource("2_w8frs")
+patch_file_scene = ExtResource("3_mx8sn")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1604648826]
+z_index = -2
 tile_set = SubResource("TileSet_w8frs")
 
 [node name="PlayerSpawn" type="Node2D" parent="." unique_id=2105399267]
