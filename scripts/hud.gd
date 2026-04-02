@@ -62,6 +62,10 @@ func set_level(level_num: int, level_theme: String) -> void:
 	else:
 		$Level.text = "Level %d\n\"%s\"" % [ level_num, level_theme ]
 
+func set_rerolls_and_upgrades(rerolls: int, upgrades: int) -> void:
+	$Rerolls.text = "Free rerolls: %d" % rerolls
+	$Upgrades.text = "Free upgrades: %d" % upgrades
+
 func _on_return_pressed() -> void:
 	$Pause.hide()
 	get_tree().paused = false

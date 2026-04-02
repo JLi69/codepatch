@@ -16,6 +16,16 @@ func update_transform() -> void:
 	else:
 		scale.y = -size
 
+func shoot_bullet(angle_offset: float = 0.0) -> void:
+	var bullet: Bullet = player_bullet_scene.instantiate()
+	bullet.global_position = $BulletSpawn.global_position
+	bullet.dir = Vector2(cos(rotation + angle_offset), sin(rotation + angle_offset))
+	bullet.speed += player.speed
+	bullet.damage = player.bullet_damage
+	var level = get_node_or_null("/root/Main/Level")
+	if level:
+		level.add_child(bullet)
+
 func _process(delta: float) -> void:
 	if player.health <= 0 or !player.can_move:
 		return
@@ -26,10 +36,15 @@ func _process(delta: float) -> void:
 	shoot_cooldown = max(shoot_cooldown - delta, 0.0)
 	if shoot_cooldown <= 0.0 and Input.is_action_pressed("shoot"):
 		shoot_cooldown = player.shoot_cooldown
-		var bullet: Bullet = player_bullet_scene.instantiate()
-		bullet.global_position = $BulletSpawn.global_position
-		bullet.dir = Vector2(cos(rotation), sin(rotation))
-		bullet.speed += player.speed
-		var level = get_node_or_null("/root/Main/Level")
-		if level:
-			level.add_child(bullet)
+		var bullet_count: int = player.bullet_count
+		var spread: float = player.bullet_spread
+		if player.multishots_left > 0:
+			player.multishots_left -= 1
+			bullet_count = ceili(bullet_count * randf_range(1.25, 2.5))
+		if bullet_count == 1:
+			shoot_bullet()
+		else:
+			for i in range(bullet_count):
+				var frac: float = (i - (bullet_count - 1) / 2.0) / float(bullet_count - 1)
+				var angle_offset: float = frac * spread
+				shoot_bullet(angle_offset)

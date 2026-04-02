@@ -17,6 +17,10 @@ var score_multiplier: float = 1.0
 # In radians
 var bullet_spread: float = deg_to_rad(60.0)
 
+var free_rerolls: int = 0
+var free_upgrades: int = 0
+var speed_time: float = 0.0
+var multishots_left: int = 0
 var health: int = max_health
 var score: int = 0
 var patch_files: int = 0
@@ -25,10 +29,11 @@ var can_move: bool = true
 @export var explosion_scene: PackedScene
 @onready var hud: HUD = $/root/Main.get_hud()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	hud.set_hp(health, max_health)
 	hud.set_score(score)
 	hud.set_patch_files(patch_files)
+	hud.set_rerolls_and_upgrades(free_rerolls, free_upgrades)
 	$Healthbar.update_bar(health, max_health)
 
 	if !visible:
@@ -73,6 +78,9 @@ func _process(_delta: float) -> void:
 		velocity = Vector2.ZERO
 	
 	velocity = velocity.normalized() * speed
+	if speed_time > 0.0:
+		velocity *= 2.0
+	speed_time = max(speed_time - delta, 0.0)
 
 func add_score(amt: int) -> void:
 	score += ceili(amt * score_multiplier)

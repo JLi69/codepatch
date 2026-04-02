@@ -53,9 +53,9 @@ horizontal_alignment = 2
 [node name="PatchFiles" type="Label" parent="." unique_id=1717504002]
 layout_mode = 0
 offset_left = 864.0
-offset_top = 573.0
+offset_top = 524.0
 offset_right = 1136.0
-offset_bottom = 599.0
+offset_bottom = 550.0
 theme_override_colors/font_shadow_color = Color(0.6296744, 0.6296749, 0.62967455, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
@@ -71,12 +71,12 @@ position = Vector2(219, 14)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("3_6fi6k")
 
-[node name="Timer" type="Label" parent="." unique_id=2109348954]
+[node name="Rerolls" type="Label" parent="." unique_id=1731976229]
 layout_mode = 0
 offset_left = 864.0
-offset_top = 548.0
+offset_top = 549.0
 offset_right = 1136.0
-offset_bottom = 574.0
+offset_bottom = 575.0
 theme_override_colors/font_shadow_color = Color(0.6296744, 0.6296749, 0.62967455, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
@@ -84,6 +84,38 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_oo0fn")
 theme_override_font_sizes/font_size = 18
+text = "Free Rerolls: 0"
+horizontal_alignment = 2
+
+[node name="Upgrades" type="Label" parent="." unique_id=1124640540]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 574.0
+offset_right = 1136.0
+offset_bottom = 600.0
+theme_override_colors/font_shadow_color = Color(0.6296744, 0.6296749, 0.62967455, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_oo0fn")
+theme_override_font_sizes/font_size = 18
+text = "Free Upgrades: 0"
+horizontal_alignment = 2
+
+[node name="Timer" type="Label" parent="." unique_id=2109348954]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 12.0
+offset_right = 1136.0
+offset_bottom = 38.0
+theme_override_colors/font_shadow_color = Color(0.6296744, 0.6296749, 0.62967455, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_oo0fn")
+theme_override_font_sizes/font_size = 30
 text = "0:00"
 horizontal_alignment = 2
 

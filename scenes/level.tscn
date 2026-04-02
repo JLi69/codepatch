@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ch0outhhr2ca8" path="res://scripts/level.gd" id="1_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://22l51veb71vf" path="res://scenes/explosion.tscn" id="2_w8frs"]
 [ext_resource type="PackedScene" uid="uid://b8b2xwl6hx2hu" path="res://scenes/patch_file.tscn" id="3_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://ck6apcjhialvh" path="res://scenes/file_item.tscn" id="4_ppgk2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w7c3h"]
 texture = ExtResource("1_2q6dc")
@@ -24,6 +25,7 @@ sources/0 = SubResource("TileSetAtlasSource_w7c3h")
 script = ExtResource("1_w7c3h")
 explosion_scene = ExtResource("2_w8frs")
 patch_file_scene = ExtResource("3_mx8sn")
+file_scene = ExtResource("4_ppgk2")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1604648826]
 z_index = -2

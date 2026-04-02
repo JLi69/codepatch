@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ck6apcjhialvh"]
+
+[ext_resource type="Texture2D" uid="uid://brlhdd24wj1lp" path="res://assets/glow.png" id="1_adx4n"]
+[ext_resource type="Script" uid="uid://dbgi3n65gbqko" path="res://scripts/file_item.gd" id="1_j612l"]
+[ext_resource type="Texture2D" uid="uid://8hc2kp2lcmcw" path="res://assets/file.png" id="1_xc6hi"]
+[ext_resource type="PackedScene" uid="uid://22l51veb71vf" path="res://scenes/explosion.tscn" id="2_80ny1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x10uc"]
+size = Vector2(16, 20)
+
+[node name="FileItem" type="Area2D" unique_id=306878869]
+z_index = -1
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_j612l")
+explosion_scene = ExtResource("2_80ny1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1972039536]
+shape = SubResource("RectangleShape2D_x10uc")
+
+[node name="Glow" type="Sprite2D" parent="." unique_id=1457028440]
+scale = Vector2(1.0937499, 1.0937499)
+texture = ExtResource("1_adx4n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1241511557]
+texture = ExtResource("1_xc6hi")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

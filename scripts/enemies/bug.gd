@@ -12,6 +12,9 @@ class_name Bug
 @export var explosion_scene: PackedScene
 @export var bullet_damage: int = 1
 @export var score_value: int = 10
+@export var file_scene: PackedScene
+@export var file_drop: String = ""
+@export var drop_file_probability: float = 1.0 / 8.0
 # How long it takes for the enemy to shoot a bullet (in seconds)
 @export var bullet_cooldown: float = 1.0
 @onready var shoot_timer: float = bullet_cooldown
@@ -168,6 +171,13 @@ func explode() -> void:
 	explosion.scale *= 0.4
 	explosion.modulate = $AnimatedSprite2D.modulate
 	level.add_child(explosion)
+
+	if randf() < drop_file_probability:
+		var file: FileItem = file_scene.instantiate()
+		file.global_position = global_position
+		file.id = file_drop
+		if level:
+			level.add_child(file)
 
 func _process(delta: float) -> void:
 	$Healthbar.update_bar(health, max_health)

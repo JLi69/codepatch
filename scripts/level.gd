@@ -15,6 +15,7 @@ var run_survive_timer: bool = false
 var theme: String = ""
 @export var explosion_scene: PackedScene
 @export var patch_file_scene: PackedScene
+@export var file_scene: PackedScene
 
 var astar_grid: AStarGrid2D
 
@@ -103,6 +104,24 @@ func _ready() -> void:
 		var patch_file = patch_file_scene.instantiate()
 		patch_file.global_position = pos
 		add_child(patch_file)
+	
+	# Place consumable file items
+	for room: Vector2i in rooms:
+		if room in patch_rooms:
+			continue
+		if randi() % 7 != 0:
+			continue
+		var occupied: Dictionary = {}
+		var count: int = randi_range(1, 2)
+		for i in range(count):	
+			var tile_pos: Vector2i = room * ROOM_SIZE + Vector2i(randi_range(2, ROOM_SIZE - 2), randi_range(2, ROOM_SIZE - 2))
+			if tile_pos in occupied:
+				continue
+			occupied[tile_pos] = true
+			var pos: Vector2 = Vector2(tile_pos * tile_sz) + tile_sz / 2.0
+			var file = file_scene.instantiate()
+			file.global_position = pos
+			add_child(file)
 	
 	# Initialize the A* Grid
 	var used_rect: Rect2i = $TileMapLayer.get_used_rect()

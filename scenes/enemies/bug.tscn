@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dso1088y6e4uq" path="res://assets/bug.png" id="2_1cphh"]
 [ext_resource type="PackedScene" uid="uid://dixpaau1h8236" path="res://scenes/enemies/enemy_bullet.tscn" id="2_t77sq"]
 [ext_resource type="PackedScene" uid="uid://bmvxbv854lfkj" path="res://scenes/enemies/healthbar.tscn" id="4_0t6l1"]
+[ext_resource type="PackedScene" uid="uid://ck6apcjhialvh" path="res://scenes/file_item.tscn" id="4_wgkba"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sp1hu"]
 atlas = ExtResource("2_1cphh")
@@ -41,6 +42,7 @@ collision_mask = 2
 script = ExtResource("1_evhp6")
 bullet_scene = ExtResource("2_t77sq")
 explosion_scene = ExtResource("2_0t6l1")
+file_scene = ExtResource("4_wgkba")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=472215569]
 sprite_frames = SubResource("SpriteFrames_hr7jg")
