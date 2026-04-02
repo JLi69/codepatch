@@ -56,7 +56,16 @@ func _process(_delta: float) -> void:
 		elif $/root/Main/Player.health > 0:
 			hide_game_over()
 
+func set_level(level_num: int, level_theme: String) -> void:
+	if level_theme.is_empty():
+		$Level.text = "Level %d" % level_num
+	else:
+		$Level.text = "Level %d\n\"%s\"" % [ level_num, level_theme ]
+
 func _on_return_pressed() -> void:
 	$Pause.hide()
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+
+func activate_store() -> void:
+	$Store.activate()

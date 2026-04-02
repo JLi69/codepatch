@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://deigq21w7yvwe"]
+
+[ext_resource type="Script" uid="uid://cqkseo2i0fc25" path="res://scripts/store.gd" id="1_atuvt"]
+[ext_resource type="FontFile" uid="uid://rshi05d6a6ra" path="res://assets/fonts/8BitOperator/8bitOperatorPlus-Bold.ttf" id="1_jmp1n"]
+[ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="3_codmc"]
+
+[node name="Store" type="Control" unique_id=47999927]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_atuvt")
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Label" parent="." unique_id=15424152]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -158.5
+offset_top = 24.0
+offset_right = 158.5
+offset_bottom = 95.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(7.099286e-07, 0.39123017, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.65882355, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("1_jmp1n")
+theme_override_font_sizes/font_size = 50
+text = "$TORE.NET"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="." unique_id=1724208610]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.0
+offset_top = -218.0
+offset_right = 251.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Upgrade1" type="Button" parent="Buttons" unique_id=435661026]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.5545257, 9.62615e-07, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0.2175481, 1.2032687e-07, 1)
+theme_override_fonts/font = ExtResource("3_codmc")
+theme_override_font_sizes/font_size = 25
+text = "UPGRADE1"
+
+[node name="Upgrade2" type="Button" parent="Buttons" unique_id=809246005]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.5545257, 9.62615e-07, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0.2175481, 1.2032687e-07, 1)
+theme_override_fonts/font = ExtResource("3_codmc")
+theme_override_font_sizes/font_size = 25
+text = "UPGRADE2"
+
+[node name="Upgrade3" type="Button" parent="Buttons" unique_id=1692492492]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.5545257, 9.62615e-07, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0.2175481, 1.2032687e-07, 1)
+theme_override_fonts/font = ExtResource("3_codmc")
+theme_override_font_sizes/font_size = 25
+text = "UPGRADE3"
+
+[node name="BuyHeal" type="Button" parent="Buttons" unique_id=1398076769]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.5545257, 9.62615e-07, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0.2175481, 1.2032687e-07, 1)
+theme_override_fonts/font = ExtResource("3_codmc")
+theme_override_font_sizes/font_size = 32
+text = "HEAL 16HP (256 bits)"
+
+[node name="Panel" type="Panel" parent="Buttons" unique_id=607025496]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Reroll" type="Button" parent="Buttons" unique_id=1869877171]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.5545257, 9.62615e-07, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0.2175481, 1.2032687e-07, 1)
+theme_override_fonts/font = ExtResource("3_codmc")
+theme_override_font_sizes/font_size = 32
+text = "REROLL (512 bits)"
+
+[node name="Stats" type="Label" parent="." unique_id=730375299]
+layout_mode = 0
+offset_left = 845.0
+offset_top = 109.0
+offset_right = 1131.0
+offset_bottom = 410.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_codmc")
+theme_override_font_sizes/font_size = 24
+text = "<STATS>"
+
+[node name="NextLevel" type="Button" parent="." unique_id=2116833609]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -183.0
+offset_top = -178.0
+offset_right = 183.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0.45882353, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_codmc")
+theme_override_font_sizes/font_size = 28
+text = "> NEXT LEVEL 
+\"LEVEL THEME\"
+(+4 MAX HP, HEAL 16HP)"
+
+[node name="WinMsg" type="Label" parent="." unique_id=1802593614]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 109.0
+offset_right = 307.0
+offset_bottom = 305.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_codmc")
+theme_override_font_sizes/font_size = 22
+text = "Congrats on finishing level 7! I guess that means you technically win? 
+
+You can keep playing and see how far you can get.
+
+Good luck!"
+autowrap_mode = 2
+
+[connection signal="pressed" from="Buttons/BuyHeal" to="." method="_on_buy_heal_pressed"]
+[connection signal="pressed" from="NextLevel" to="." method="_on_next_level_pressed"]

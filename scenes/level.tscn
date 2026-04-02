@@ -30,3 +30,5 @@ z_index = -2
 tile_set = SubResource("TileSet_w8frs")
 
 [node name="PlayerSpawn" type="Node2D" parent="." unique_id=2105399267]
+
+[node name="Enemies" type="Node2D" parent="." unique_id=497710911]

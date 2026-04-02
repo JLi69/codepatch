@@ -17,7 +17,7 @@ func update_transform() -> void:
 		scale.y = -size
 
 func _process(delta: float) -> void:
-	if player.health <= 0:
+	if player.health <= 0 or !player.can_move:
 		return
 
 	update_transform()

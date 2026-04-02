@@ -7,8 +7,7 @@
 
 [node name="Main" type="Node2D" unique_id=1303435590]
 script = ExtResource("1_sugp2")
-
-[node name="Level" parent="." unique_id=862313325 instance=ExtResource("1_o5qli")]
+level_scene = ExtResource("1_o5qli")
 
 [node name="Player" parent="." unique_id=694122342 instance=ExtResource("2_0wfyh")]
 

@@ -12,6 +12,7 @@ var corruption_interval: float = 12.0
 var corruption_count: int = 0
 var survive_timer: float = 60.0
 var run_survive_timer: bool = false
+var theme: String = ""
 @export var explosion_scene: PackedScene
 @export var patch_file_scene: PackedScene
 
@@ -66,7 +67,7 @@ func spawn_enemy(id: String, tile_pos: Vector2i) -> bool:
 
 	var enemy = enemy_scenes[id].instantiate()
 	enemy.global_position = Vector2(tile_pos * tile_sz) + tile_sz / 2.0 
-	add_child(enemy)
+	$Enemies.add_child(enemy)
 	return true
 
 func _ready() -> void:
@@ -76,6 +77,7 @@ func _ready() -> void:
 	$PlayerSpawn.global_position.x = (float(spawn_room.x) * ROOM_SIZE + ROOM_SIZE / 2.0) * tile_sz.x
 	$PlayerSpawn.global_position.y = (float(spawn_room.y) * ROOM_SIZE + ROOM_SIZE / 2.0) * tile_sz.y
 	generate_level(size, size)
+	print("Generated a %d x %d maze." % [ size, size ])
 	if player:
 		player.global_position = $PlayerSpawn.global_position
 		var camera: Camera2D = $/root/Main/Player/Camera2D
@@ -91,7 +93,7 @@ func _ready() -> void:
 	var patch_rooms: Array = []
 	for i in range(3):
 		var index: int = randi() % len(rooms)
-		while index in patch_rooms:
+		while rooms[index] in patch_rooms:
 			index += 1
 			index %= len(rooms)
 		patch_rooms.push_back(rooms[index])
@@ -264,8 +266,26 @@ func corrupt_tiles(count: int) -> void:
 		add_child(explosion)
 
 func _process(delta: float) -> void:
+	if survive_timer <= -0.5 and player.health > 0:
+		modulate.r -= delta
+		modulate.g = modulate.r
+		modulate.b = modulate.r
+		player.modulate = modulate
+		if modulate.r <= 0.0:
+			if level_num % 8 == 7:
+				player.add_score(1024)
+			player.hide()
+			var hud: HUD = $/root/Main/UI/HUD
+			hud.activate_store()
+			queue_free()
+		return
+
 	if player.health > 0 and run_survive_timer:
 		survive_timer -= delta
+		if survive_timer <= 0.0:
+			player.can_move = false
+			if get_node_or_null("Enemies"):
+				$Enemies.process_mode = Node.PROCESS_MODE_DISABLED
 
 	# Spawn enemies
 	if player.health > 0:

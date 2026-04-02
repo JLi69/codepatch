@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://b3j21gnxq1jn1" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Bold.ttf" id="3_5ysmq"]
 [ext_resource type="Texture2D" uid="uid://6wiq7tlmlqa0" path="res://assets/patch_file.png" id="3_6fi6k"]
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="5_uo2fv"]
+[ext_resource type="PackedScene" uid="uid://deigq21w7yvwe" path="res://scenes/store.tscn" id="6_047uy"]
 
 [node name="HUD" type="Control" unique_id=388640673]
 process_mode = 3
@@ -86,6 +87,47 @@ theme_override_font_sizes/font_size = 18
 text = "0:00"
 horizontal_alignment = 2
 
+[node name="Survive" type="Label" parent="." unique_id=977598565]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -134.5
+offset_top = 24.0
+offset_right = 134.5
+offset_bottom = 75.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.9999897, 0.36780956, 0.30016372, 1)
+theme_override_colors/font_outline_color = Color(0.552962, 1.3596937e-06, 4.813075e-07, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_oo0fn")
+theme_override_font_sizes/font_size = 36
+text = "Survive! 00s"
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="." unique_id=583645833]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 11.0
+offset_right = 333.0
+offset_bottom = 72.0
+theme_override_colors/font_shadow_color = Color(0.6296744, 0.6296749, 0.62967455, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_oo0fn")
+theme_override_font_sizes/font_size = 20
+text = "Level 0
+\"LEVEL NAME\""
+
+[node name="Store" parent="." unique_id=47999927 instance=ExtResource("6_047uy")]
+visible = false
+layout_mode = 1
+
 [node name="GameOver" type="ColorRect" parent="." unique_id=1640683997]
 visible = false
 layout_mode = 0
@@ -116,27 +158,6 @@ theme_override_font_sizes/font_size = 120
 text = "PWNED!!!"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Survive" type="Label" parent="." unique_id=977598565]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -134.5
-offset_top = 24.0
-offset_right = 134.5
-offset_bottom = 75.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.9999897, 0.36780956, 0.30016372, 1)
-theme_override_colors/font_outline_color = Color(0.552962, 1.3596937e-06, 4.813075e-07, 1)
-theme_override_constants/shadow_offset_x = 4
-theme_override_constants/shadow_offset_y = 4
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_oo0fn")
-theme_override_font_sizes/font_size = 36
-text = "Survive! 00s"
-horizontal_alignment = 1
 
 [node name="Pause" type="ColorRect" parent="." unique_id=287500937]
 visible = false

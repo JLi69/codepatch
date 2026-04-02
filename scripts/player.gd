@@ -2,20 +2,35 @@ extends CharacterBody2D
 
 class_name Player
 
-# Stats that can be upgraded
+# Default stats
 const DEFAULT_SPEED: float = 96.0
+const DEFAULT_MAX_HEALTH: int = 32
+const DEFAULT_SHOOT_COOLDOWN: float = 0.5
+
+# Stats that can be upgraded
 var speed: float = DEFAULT_SPEED
-var max_health: int = 32
-var shoot_cooldown: float = 0.5
+var max_health: int = DEFAULT_MAX_HEALTH
+var shoot_cooldown: float = DEFAULT_SHOOT_COOLDOWN
+var bullet_count: int = 1
+var bullet_damage: int = 1
+var score_multiplier: float = 1.0
+# In radians
+var bullet_spread: float = deg_to_rad(60.0)
 
 var health: int = max_health
 var score: int = 0
 var patch_files: int = 0
+var can_move: bool = true
 
 @export var explosion_scene: PackedScene
 @onready var hud: HUD = $/root/Main.get_hud()
 
 func _process(_delta: float) -> void:
+	hud.set_hp(health, max_health)
+	hud.set_score(score)
+	hud.set_patch_files(patch_files)
+	$Healthbar.update_bar(health, max_health)
+
 	if !visible:
 		velocity = Vector2.ZERO
 		return
@@ -39,12 +54,7 @@ func _process(_delta: float) -> void:
 				var tile_pos = level.get_tile_pos(global_position + Vector2(dx, dy) * 7.0)
 				if level.get_tile(tile_pos) == level.CORRUPTED:
 					health = 0
-					break
-
-	hud.set_hp(health, max_health)
-	hud.set_score(score)
-	hud.set_patch_files(patch_files)
-	$Healthbar.update_bar(health, max_health)
+					break	
 
 	velocity = Vector2.ZERO
 	
@@ -58,11 +68,14 @@ func _process(_delta: float) -> void:
 		velocity.x -= 1.0
 	if Input.is_action_pressed("right"):
 		velocity.x += 1.0
+
+	if !can_move:
+		velocity = Vector2.ZERO
 	
 	velocity = velocity.normalized() * speed
 
 func add_score(amt: int) -> void:
-	score += amt
+	score += ceili(amt * score_multiplier)
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -73,6 +86,9 @@ func get_tile_position() -> Vector2i:
 		floori(global_position.x / level.tile_sz.x),
 		floori(global_position.y / level.tile_sz.y)
 	)
+
+func heal(amt: int) -> void:
+	health = min(max_health, health + amt)
 
 func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 	if health <= 0:
