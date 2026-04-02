@@ -6,9 +6,10 @@ class_name Player
 const DEFAULT_SPEED: float = 96.0
 var speed: float = DEFAULT_SPEED
 var max_health: int = 32
-
 var shoot_cooldown: float = 0.5
+
 var health: int = max_health
+var score: int = 0
 
 @export var explosion_scene: PackedScene
 @onready var hud: HUD = $/root/Main.get_hud()
@@ -40,6 +41,7 @@ func _process(_delta: float) -> void:
 					break
 
 	hud.set_hp(health, max_health)
+	hud.set_score(score)
 	$Healthbar.update_bar(health, max_health)
 
 	velocity = Vector2.ZERO
@@ -56,6 +58,9 @@ func _process(_delta: float) -> void:
 		velocity.x += 1.0
 	
 	velocity = velocity.normalized() * speed
+
+func add_score(amt: int) -> void:
+	score += amt
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()

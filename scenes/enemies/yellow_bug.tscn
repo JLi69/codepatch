@@ -6,6 +6,7 @@
 [node name="Bug" unique_id=564781483 instance=ExtResource("1_vgib0")]
 script = ExtResource("2_vs0vg")
 speed = 80.0
+score_value = 20
 bullet_cooldown = 0.6
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=472215569]

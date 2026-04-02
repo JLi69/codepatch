@@ -30,6 +30,38 @@ theme_override_fonts/font = ExtResource("2_oo0fn")
 theme_override_font_sizes/font_size = 24
 text = "HP: 0/0"
 
+[node name="Score" type="Label" parent="." unique_id=2014749699]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 599.0
+offset_right = 1136.0
+offset_bottom = 634.0
+theme_override_colors/font_shadow_color = Color(0.6296744, 0.6296749, 0.62967455, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_oo0fn")
+theme_override_font_sizes/font_size = 24
+text = "0 bits"
+horizontal_alignment = 2
+
+[node name="Timer" type="Label" parent="." unique_id=2109348954]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 574.0
+offset_right = 1136.0
+offset_bottom = 600.0
+theme_override_colors/font_shadow_color = Color(0.6296744, 0.6296749, 0.62967455, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_oo0fn")
+theme_override_font_sizes/font_size = 18
+text = "0:00"
+horizontal_alignment = 2
+
 [node name="GameOver" type="ColorRect" parent="." unique_id=1640683997]
 visible = false
 layout_mode = 0

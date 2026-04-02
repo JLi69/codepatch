@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 
 	if can_destroy_corruption:
 		if level.get_tile(level.get_tile_pos(global_position)) == level.CORRUPTED:
+			$/root/Main/Player.add_score(1)
 			level.set_tile(level.get_tile_pos(global_position), level.EMPTY)
 			explode()
 
@@ -27,7 +28,6 @@ func _on_body_entered(body: Node2D) -> void:
 
 func explode() -> void:
 	queue_free()
-	var level: Level = get_node_or_null("/root/Main/Level")
 	if level:
 		var explosion: GPUParticles2D = explosion_scene.instantiate()
 		explosion.global_position = global_position

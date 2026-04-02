@@ -11,6 +11,7 @@ class_name Bug
 @export var bullet_scene: PackedScene
 @export var explosion_scene: PackedScene
 @export var bullet_damage: int = 1
+@export var score_value: int = 10
 # How long it takes for the enemy to shoot a bullet (in seconds)
 @export var bullet_cooldown: float = 1.0
 @onready var shoot_timer: float = bullet_cooldown
@@ -160,6 +161,8 @@ func handle_path_update(delta: float) -> bool:
 
 func explode() -> void:
 	queue_free()
+	if player.health > 0:
+		player.add_score(score_value)
 	var explosion: GPUParticles2D = explosion_scene.instantiate()
 	explosion.global_position = global_position
 	explosion.scale *= 0.4

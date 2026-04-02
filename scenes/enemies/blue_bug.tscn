@@ -5,6 +5,7 @@
 
 [node name="Bug" unique_id=564781483 instance=ExtResource("1_onbwt")]
 script = ExtResource("2_dmbte")
+score_value = 20
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=472215569]
 modulate = Color(0, 1, 1, 1)
