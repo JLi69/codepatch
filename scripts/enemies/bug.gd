@@ -10,6 +10,7 @@ class_name Bug
 @export var max_health: int = 4
 @export var bullet_scene: PackedScene
 @export var explosion_scene: PackedScene
+@export var bullet_damage: int = 1
 # How long it takes for the enemy to shoot a bullet (in seconds)
 @export var bullet_cooldown: float = 1.0
 @onready var shoot_timer: float = bullet_cooldown
@@ -112,6 +113,8 @@ func shoot_bullet(offset: float = 0.0) -> void:
 	bullet.position = spawn_point.global_position + dir * 4.0
 	bullet.dir = dir
 	bullet.speed += speed
+	bullet.modulate = $AnimatedSprite2D.modulate
+	bullet.damage = bullet_damage
 	level.add_child(bullet)
 
 # Shoots bullets at the player, this function should be overridden if an enemy

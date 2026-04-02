@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dya7ogrxxfx3i"]
+
+[ext_resource type="PackedScene" uid="uid://dmtjl5wtign51" path="res://scenes/enemies/bug.tscn" id="1_onbwt"]
+[ext_resource type="Script" uid="uid://d2r1yjcn8usig" path="res://scripts/enemies/blue_bug.gd" id="2_dmbte"]
+
+[node name="Bug" unique_id=564781483 instance=ExtResource("1_onbwt")]
+script = ExtResource("2_dmbte")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=472215569]
+modulate = Color(0, 1, 1, 1)

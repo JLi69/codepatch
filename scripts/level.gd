@@ -15,11 +15,17 @@ var corruption_count: int = 0
 var astar_grid: AStarGrid2D
 
 static var enemy_scenes: Dictionary = {
-	"bug" : preload("uid://dmtjl5wtign51"),
+	"bug" : preload("uid://dmtjl5wtign51"), 
+	"red_bug" : preload("uid://bls7akohjqi2o"),
+	"yellow_bug" : preload("uid://csl4bbvxy7owe"),
+	"blue_bug" : preload("uid://dya7ogrxxfx3i")
 }
 
-static var weights: Dictionary = {
-	"bug" : 10.0,
+var weights: Dictionary = {
+	"bug" : 15.0,
+	"red_bug" : 2.0,
+	"blue_bug" : 1.0,
+	"yellow_bug" : 1.0,
 }
 var total_weight: float = 0.0
 
@@ -214,7 +220,7 @@ func spawn_enemies() -> void:
 	for i in range(enemy_count):
 		var attempts_left: int = 3
 		while attempts_left > 0:
-			var dist: float = randf_range(5.0, 24.0)
+			var dist: float = randf_range(8.0, 24.0)
 			var angle: float = randf_range(0.0, 2.0 * PI)
 			var rand_pos: Vector2i = Vector2i(
 				floori(dist * cos(angle)),
@@ -233,7 +239,7 @@ func spawn_enemies() -> void:
 
 func corrupt_tiles(count: int) -> void:
 	for i in range(count):
-		var dist: float = randf_range(5.0, 24.0)
+		var dist: float = randf_range(6.0, 24.0)
 		var angle: float = randf_range(0.0, 2.0 * PI)
 		var rand_pos: Vector2i = Vector2i(
 			floori(dist * cos(angle)),
@@ -255,8 +261,7 @@ func _process(delta: float) -> void:
 	if enemy_spawn_timer < 0.0:
 		spawn_enemies()
 		enemy_spawn_timer = enemy_spawn_interval * randf_range(1.0, 1.25)
-		enemy_spawn_interval *= 0.95
-		enemy_spawn_interval = max(enemy_spawn_interval, 15.0)
+		enemy_spawn_interval = max(enemy_spawn_interval * 0.9, 15.0)
 	
 	corruption_timer -= delta
 	if corruption_timer < 0.0:
@@ -265,5 +270,4 @@ func _process(delta: float) -> void:
 		if randi() % 3 == 0:
 			corruption_count += 1
 		corruption_count = min(corruption_count, 16)
-		corruption_interval *= 0.9
-		corruption_interval = max(corruption_interval, 5.0)
+		corruption_interval = max(corruption_interval * 0.9, 5.0)

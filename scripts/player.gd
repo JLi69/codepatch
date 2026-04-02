@@ -5,7 +5,7 @@ class_name Player
 # Stats that can be upgraded
 const DEFAULT_SPEED: float = 96.0
 var speed: float = DEFAULT_SPEED
-var max_health: int = 20
+var max_health: int = 32
 
 var shoot_cooldown: float = 0.5
 var health: int = max_health

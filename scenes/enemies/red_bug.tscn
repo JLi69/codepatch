@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bls7akohjqi2o"]
+
+[ext_resource type="PackedScene" uid="uid://dmtjl5wtign51" path="res://scenes/enemies/bug.tscn" id="1_bgcoa"]
+
+[node name="Bug" unique_id=564781483 instance=ExtResource("1_bgcoa")]
+max_health = 8
+bullet_damage = 2
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=472215569]
+modulate = Color(0.99692446, 0.00021389306, 0.00011782408, 1)
