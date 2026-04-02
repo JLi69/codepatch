@@ -2,12 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://cyfg8mj2yi3xq" path="res://assets/tiles.png" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://ch0outhhr2ca8" path="res://scripts/level.gd" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://22l51veb71vf" path="res://scenes/explosion.tscn" id="2_w8frs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w7c3h"]
 texture = ExtResource("1_2q6dc")
 0:0/0 = 0
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/animation_columns = 2
+2:0/animation_frame_0/duration = 0.5
+2:0/animation_frame_1/duration = 0.5
+2:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_w8frs"]
 physics_layer_0/collision_layer = 7
@@ -16,6 +21,7 @@ sources/0 = SubResource("TileSetAtlasSource_w7c3h")
 
 [node name="Level" type="Node2D" unique_id=862313325]
 script = ExtResource("1_w7c3h")
+explosion_scene = ExtResource("2_w8frs")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1604648826]
 tile_set = SubResource("TileSet_w8frs")

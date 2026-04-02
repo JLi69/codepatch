@@ -9,10 +9,17 @@ var damage: int = 1
 @export var explosion_scene: PackedScene
 @export var use_modulate_for_explosion: bool = false
 @export var explosion_color: Color = Color.WHITE
+@export var can_destroy_corruption: bool = false
+@onready var level: Level = get_node_or_null("/root/Main/Level")
 
 func _process(delta: float) -> void:
 	position += delta * dir * speed
 	rotation += 4.0 * PI * delta
+
+	if can_destroy_corruption:
+		if level.get_tile(level.get_tile_pos(global_position)) == level.CORRUPTED:
+			level.set_tile(level.get_tile_pos(global_position), level.EMPTY)
+			explode()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is TileMapLayer:

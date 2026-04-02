@@ -18,10 +18,10 @@ func _process(_delta: float) -> void:
 		velocity = Vector2.ZERO
 		return
 
+	var level: Level = get_node_or_null("/root/Main/Level")
 	if health <= 0:
 		hud.set_hp(0, 0)
 		hide()
-		var level: Level = get_node_or_null("/root/Main/Level")
 		if level:
 			var explosion: GPUParticles2D = explosion_scene.instantiate()
 			explosion.global_position = global_position
@@ -30,6 +30,14 @@ func _process(_delta: float) -> void:
 			explosion.connect("finished", hud.show_game_over)
 			level.add_child(explosion)
 		return
+
+	if level:
+		for dx in range(-1, 1 + 1):
+			for dy in range(-1, 1 + 1):
+				var tile_pos = level.get_tile_pos(global_position + Vector2(dx, dy) * 7.0)
+				if level.get_tile(tile_pos) == level.CORRUPTED:
+					health = 0
+					break
 
 	hud.set_hp(health, max_health)
 	$Healthbar.update_bar(health, max_health)

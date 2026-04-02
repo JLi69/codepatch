@@ -7,6 +7,10 @@ var level_num: int = 0
 @onready var tile_sz: Vector2i = $TileMapLayer.tile_set.tile_size
 var enemy_spawn_timer: float = 8.0
 var enemy_spawn_interval: float = 30.0
+var corruption_timer: float = 120.0
+var corruption_interval: float = 12.0
+var corruption_count: int = 0
+@export var explosion_scene: PackedScene
 
 var astar_grid: AStarGrid2D
 
@@ -21,6 +25,7 @@ var total_weight: float = 0.0
 
 const EMPTY: Vector2i = Vector2i(0, 0)
 const WALL: Vector2i = Vector2i(1, 0)
+const CORRUPTED: Vector2i = Vector2i(2, 0)
 const ROOM_SIZE: int = 12
 
 const ADJ: Array[Vector2i] = [ 
@@ -226,6 +231,23 @@ func spawn_enemies() -> void:
 				break
 			attempts_left -= 1
 
+func corrupt_tiles(count: int) -> void:
+	for i in range(count):
+		var dist: float = randf_range(5.0, 24.0)
+		var angle: float = randf_range(0.0, 2.0 * PI)
+		var rand_pos: Vector2i = Vector2i(
+			floori(dist * cos(angle)),
+			floori(dist * sin(angle)),
+		)
+		var tile_pos: Vector2i = rand_pos + get_tile_pos(player.global_position)
+		if get_tile(tile_pos) != EMPTY:
+			continue
+		set_tile(tile_pos, CORRUPTED)
+		var explosion: GPUParticles2D = explosion_scene.instantiate()
+		explosion.global_position = Vector2(tile_pos * tile_sz) + tile_sz / 2.0
+		explosion.scale *= 0.4
+		add_child(explosion)
+
 func _process(delta: float) -> void:
 	# Spawn enemies
 	if player.health > 0:
@@ -235,3 +257,13 @@ func _process(delta: float) -> void:
 		enemy_spawn_timer = enemy_spawn_interval * randf_range(1.0, 1.25)
 		enemy_spawn_interval *= 0.95
 		enemy_spawn_interval = max(enemy_spawn_interval, 15.0)
+	
+	corruption_timer -= delta
+	if corruption_timer < 0.0:
+		corruption_timer = corruption_interval * randf_range(1.0, 1.25)
+		corrupt_tiles(randi_range(4 + corruption_count, 8 + corruption_count))
+		if randi() % 3 == 0:
+			corruption_count += 1
+		corruption_count = min(corruption_count, 16)
+		corruption_interval *= 0.9
+		corruption_interval = max(corruption_interval, 5.0)
