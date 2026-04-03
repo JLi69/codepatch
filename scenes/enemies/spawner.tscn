@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://ct6gey5jmcfj7"]
+
+[ext_resource type="Texture2D" uid="uid://kysoxnvlil2e" path="res://assets/explosion_particle.png" id="1_5oxug"]
+[ext_resource type="Script" uid="uid://5h4a54gkli24" path="res://scripts/enemies/spawner.gd" id="1_mv1hi"]
+[ext_resource type="PackedScene" uid="uid://22l51veb71vf" path="res://scenes/explosion.tscn" id="2_ar6l2"]
+[ext_resource type="PackedScene" uid="uid://bmvxbv854lfkj" path="res://scenes/enemies/healthbar.tscn" id="2_lie5b"]
+
+[sub_resource type="Curve" id="Curve_5oxug"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.25401926, 1.7642486), 0.0, 0.0, 0, 0, Vector2(0.6463022, 0.5012952), -3.850769, -3.850769, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_lie5b"]
+curve = SubResource("Curve_5oxug")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5oxug"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+angular_velocity_min = -360.0
+angular_velocity_max = 359.99997
+radial_velocity_min = 179.99997
+radial_velocity_max = 199.99997
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_lie5b")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_faxh7"]
+radius = 17.0
+
+[node name="Spawner" type="Area2D" unique_id=78664624]
+script = ExtResource("1_mv1hi")
+explosion_scene = ExtResource("2_ar6l2")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=616748300]
+scale = Vector2(0.15, 0.15)
+amount = 24
+texture = ExtResource("1_5oxug")
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_5oxug")
+
+[node name="Healthbar" parent="." unique_id=1693914397 instance=ExtResource("2_lie5b")]
+offset_left = -12.0
+offset_top = -25.0
+offset_bottom = -23.0
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1844629419]
+shape = SubResource("CircleShape2D_faxh7")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -16,6 +16,7 @@ var theme: String = ""
 @export var explosion_scene: PackedScene
 @export var patch_file_scene: PackedScene
 @export var file_scene: PackedScene
+@export var spawner_scene: PackedScene
 
 var astar_grid: AStarGrid2D
 
@@ -148,6 +149,26 @@ func _ready() -> void:
 			var file = file_scene.instantiate()
 			file.global_position = pos
 			add_child(file)
+	
+	# Place enemy spawners if this is a memory leak level
+	if theme == "MEMORY LEAK":
+		var room_count: int = randi_range(int(size * size * 0.15), int(size * size * 0.2))
+		var disallowed: Dictionary = {}
+		for room in patch_rooms:
+			disallowed[room] = true
+		for i in range(room_count):
+			var index: int = randi() % len(rooms)
+			var room: Vector2i = rooms[index]
+			while room in disallowed:
+				index += 1
+				index %= len(rooms)
+				room = rooms[index]
+			var tile_pos: Vector2i = room * ROOM_SIZE + Vector2i(randi_range(4, ROOM_SIZE - 4), randi_range(4, ROOM_SIZE - 4))
+			var pos: Vector2 = Vector2(tile_pos * tile_sz) + tile_sz / 2.0
+			var spawner: Spawner = spawner_scene.instantiate()
+			spawner.global_position = pos
+			add_child(spawner)
+			disallowed[room] = true
 	
 	# Generate corrupted rooms if this is a corrupted level
 	if theme == "C0RRUPT3D":

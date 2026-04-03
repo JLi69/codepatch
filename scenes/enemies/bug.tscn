@@ -40,7 +40,7 @@ size = Vector2(10, 8)
 
 [node name="Bug" type="CharacterBody2D" unique_id=564781483]
 z_index = 1
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_evhp6")
 bullet_scene = ExtResource("2_t77sq")
