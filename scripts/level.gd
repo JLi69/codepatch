@@ -26,8 +26,9 @@ static var enemy_scenes: Dictionary = {
 	"blue_bug" : preload("uid://dya7ogrxxfx3i")
 }
 
+const MAX_WEIGHT: float = 15.0
 var weights: Dictionary = {
-	"bug" : 15.0,
+	"bug" : MAX_WEIGHT,
 	"red_bug" : 2.0,
 	"blue_bug" : 1.0,
 	"yellow_bug" : 1.0,
@@ -68,10 +69,26 @@ func spawn_enemy(id: String, tile_pos: Vector2i) -> bool:
 
 	var enemy = enemy_scenes[id].instantiate()
 	enemy.global_position = Vector2(tile_pos * tile_sz) + tile_sz / 2.0 
+	# Increase enemy score and health with each level
+	var health_factor: float = 1.0 + floori(level_num / 2.0) * 0.25
+	var score_factor: float = 1.0 + level_num * 0.25
+	if enemy is Bug:
+		enemy.score_value = floori(enemy.score_value * score_factor)
+		enemy.max_health = floori(enemy.max_health * health_factor)
+		enemy.bullet_damage = ceili(enemy.bullet_damage * health_factor)
 	$Enemies.add_child(enemy)
 	return true
 
 func _ready() -> void:
+	# Change enemy weights
+	for enemy_id in weights:
+		var current_weight: float = weights[enemy_id]
+		if current_weight > 0.0 and current_weight < MAX_WEIGHT:
+			weights[enemy_id] = min(weights[enemy_id] + level_num, MAX_WEIGHT)
+	# Update survive timer
+	survive_timer += 10.0 * floori(level_num / 2.0)
+	survive_timer = min(survive_timer, 100.0)
+
 	var size: int = get_level_size()
 	var spawn_room: Vector2i = Vector2i(randi_range(0, size - 1), randi_range(0, size - 1))
 	# Set the player spawn position
@@ -246,7 +263,7 @@ func generate_level(width: int, height: int) -> void:
 		set_tile(tile_pos, WALL)
 
 func spawn_enemies() -> void:
-	var enemy_count: int = randi_range(2, 5)
+	var enemy_count: int = randi_range(2, 5) + int(clamp(level_num / 3.0, 0.0, 3.0))
 	for i in range(enemy_count):
 		var attempts_left: int = 3
 		while attempts_left > 0:

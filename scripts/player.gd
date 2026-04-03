@@ -110,4 +110,6 @@ func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 		area.explode()
 	elif area.get_parent() is Bug:
 		health = 0
+		area.get_parent().can_spawn_file = false
 		area.get_parent().explode()
+	health = max(health, 0)

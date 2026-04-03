@@ -26,6 +26,7 @@ var target_tile_pos: Vector2i
 
 var pause_timer: float = 0.5
 var pause_interval: float = 1.0
+var can_spawn_file: bool = true
 
 const UPDATE_PATH_INTERVAL: float = 0.25
 var update_path_timer: float = UPDATE_PATH_INTERVAL
@@ -172,7 +173,7 @@ func explode() -> void:
 	explosion.modulate = $AnimatedSprite2D.modulate
 	level.call_deferred("add_child", explosion)
 
-	if randf() < drop_file_probability:
+	if randf() < drop_file_probability and can_spawn_file:
 		var file: FileItem = file_scene.instantiate()
 		file.global_position = global_position
 		file.id = file_drop
