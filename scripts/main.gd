@@ -16,6 +16,14 @@ const LEVEL_THEMES: Array[String] = [
 	"C0RRUPT3D",
 ]
 
+const LEVEL_DESCRIPTIONS: Dictionary = {
+	"VIRUS" : "A virus has infected the program.\nAvoid the viruses while finding the patch files.",
+	"SEGFAULT" : "There seems to be a bug corrupting memory.\nFind the patch files to fix it.",
+	"MEMORY LEAK" : "Used memory is not being freed.\nAvoid or destroy the leaks that are spawning bugs.",
+	"SECURITY BREACH" : "Hackers have stolen our data.\nYou need to fight and defeat them to get the patch files.",
+	"C0RRUPT3D" : "The filesystem has been corrupted.",
+}
+
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED

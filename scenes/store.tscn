@@ -143,9 +143,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -183.0
-offset_top = -154.0
+offset_top = -170.0
 offset_right = 183.0
-offset_bottom = -56.0
+offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0.45882353, 0, 1)
@@ -173,6 +173,25 @@ text = "Congrats on finishing level 7! I guess that means you technically win?
 You can keep playing and see how far you can get.
 
 Good luck!"
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="." unique_id=1146496736]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -294.0
+offset_top = -62.0
+offset_right = 294.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_codmc")
+theme_override_font_sizes/font_size = 18
+text = "DESCRIPTION"
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [connection signal="pressed" from="Buttons/BuyHeal" to="." method="_on_buy_heal_pressed"]

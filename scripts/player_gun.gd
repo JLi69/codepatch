@@ -8,6 +8,9 @@ extends Sprite2D
 
 var shoot_cooldown: float = 0.0
 
+# Code taken from The Legend of the Lawns 
+# (https://github.com/Birb-Games/the-legend-of-the-lawns)
+# from the water gun script, credit: gldeA
 func update_transform() -> void:
 	position = (get_global_mouse_position() - player.global_position).normalized() * radius
 	rotation = (get_global_mouse_position() - player.global_position).normalized().angle()

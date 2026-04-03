@@ -245,12 +245,14 @@ func setup_next_level() -> void:
 		$NextLevel.text = """> NEXT LEVEL
 (+4 MAX HP, HEAL 16 HP)
 """
+		$Description.text = ""
 		return
 
 	$NextLevel.text = """> NEXT LEVEL
 "%s"
 (+4 MAX HP, HEAL 16 HP)
 """ % level_theme
+	$Description.text = Main.LEVEL_DESCRIPTIONS[level_theme]
 
 func activate() -> void:
 	show()
