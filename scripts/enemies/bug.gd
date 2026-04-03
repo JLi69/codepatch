@@ -15,6 +15,7 @@ class_name Bug
 @export var file_scene: PackedScene
 @export var file_drop: String = ""
 @export var drop_file_probability: float = 1.0 / 8.0
+@export var rotate_to_direction: bool = true
 # How long it takes for the enemy to shoot a bullet (in seconds)
 @export var bullet_cooldown: float = 1.0
 @onready var shoot_timer: float = bullet_cooldown
@@ -195,7 +196,7 @@ func _process(delta: float) -> void:
 	handle_path_update(delta)
 	update_shooting(delta)
 
-	if velocity.length() > 0.0 and pause_timer <= 0.0:
+	if velocity.length() > 0.0 and pause_timer <= 0.0 and rotate_to_direction:
 		var dir: Vector2 = velocity.normalized()
 		var diff: float = 1.25 * PI * delta
 		var counterclockwise: Vector2 = Vector2(

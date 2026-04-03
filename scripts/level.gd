@@ -23,7 +23,8 @@ static var enemy_scenes: Dictionary = {
 	"bug" : preload("uid://dmtjl5wtign51"), 
 	"red_bug" : preload("uid://bls7akohjqi2o"),
 	"yellow_bug" : preload("uid://csl4bbvxy7owe"),
-	"blue_bug" : preload("uid://dya7ogrxxfx3i")
+	"blue_bug" : preload("uid://dya7ogrxxfx3i"),
+	"virus" : preload("uid://c1lctbj08xklh"),
 }
 
 const MAX_WEIGHT: float = 15.0
@@ -87,6 +88,8 @@ func _ready() -> void:
 		var current_weight: float = weights[enemy_id]
 		if current_weight > 0.0 and current_weight < MAX_WEIGHT:
 			weights[enemy_id] = min(weights[enemy_id] + level_num, MAX_WEIGHT)
+	if theme == "VIRUS":
+		weights["virus"] = MAX_WEIGHT * 2.0
 	# Update survive timer
 	survive_timer += 10.0 * floori(level_num / 2.0)
 	survive_timer = min(survive_timer, 100.0)
@@ -301,11 +304,11 @@ func spawn_enemies() -> void:
 
 func corrupt_tiles(count: int) -> void:
 	for i in range(count):
-		var dist: float = randf_range(7.0, 24.0)
+		var dist: float = randf_range(9.0, 24.0)
 		var angle: float = randf_range(0.0, 2.0 * PI)
 		var rand_pos: Vector2i = Vector2i(
-			floori(dist * cos(angle)),
-			floori(dist * sin(angle)),
+			ceili(dist * cos(angle)),
+			ceili(dist * sin(angle)),
 		)
 		var tile_pos: Vector2i = rand_pos + get_tile_pos(player.global_position)
 		if get_tile(tile_pos) != EMPTY:
