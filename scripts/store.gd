@@ -241,6 +241,12 @@ func setup_upgrades() -> void:
 	reload_buttons()
 
 func setup_next_level() -> void:
+	if level_theme.is_empty():
+		$NextLevel.text = """> NEXT LEVEL
+(+4 MAX HP, HEAL 16 HP)
+"""
+		return
+
 	$NextLevel.text = """> NEXT LEVEL
 "%s"
 (+4 MAX HP, HEAL 16 HP)
@@ -254,7 +260,10 @@ func activate() -> void:
 	setup_buy_heal()
 	setup_reroll()
 	setup_upgrades()
-	level_theme = Main.LEVEL_THEMES[randi() % len(Main.LEVEL_THEMES)]
+	if (main.current_level + 1) % 2 == 1:
+		level_theme = Main.LEVEL_THEMES[randi() % len(Main.LEVEL_THEMES)]
+	else:
+		level_theme = ""
 	setup_next_level()
 
 	if main.current_level == 7:
