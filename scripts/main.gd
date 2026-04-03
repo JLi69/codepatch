@@ -12,7 +12,6 @@ const LEVEL_THEMES: Array[String] = [
 	"VIRUS",
 	"SEGFAULT",
 	"MEMORY LEAK",
-	"OFF-BY-1",
 	"SECURITY BREACH",
 	"C0RRUPT3D",
 ]

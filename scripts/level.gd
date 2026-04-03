@@ -250,7 +250,7 @@ func spawn_enemies() -> void:
 	for i in range(enemy_count):
 		var attempts_left: int = 3
 		while attempts_left > 0:
-			var dist: float = randf_range(8.0, 24.0)
+			var dist: float = randf_range(9.0, 24.0)
 			var angle: float = randf_range(0.0, 2.0 * PI)
 			var rand_pos: Vector2i = Vector2i(
 				floori(dist * cos(angle)),
