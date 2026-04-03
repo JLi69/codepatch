@@ -23,6 +23,7 @@ var path: PackedVector2Array = []
 var current_path_index: int = 0
 const ARRIVE_DISTANCE: float = 8.0
 var target_tile_pos: Vector2i
+var time_alive: float = 0.0
 
 var pause_timer: float = 0.5
 var pause_interval: float = 1.0
@@ -188,6 +189,8 @@ func _process(delta: float) -> void:
 	
 	if player.health <= 0:
 		return
+
+	time_alive += delta
 	
 	handle_path_update(delta)
 	update_shooting(delta)

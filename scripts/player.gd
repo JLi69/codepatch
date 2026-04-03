@@ -53,11 +53,12 @@ func _process(delta: float) -> void:
 			level.add_child(explosion)
 		return
 
-	if level:
+	if level and health > 0:
 		for dx in range(-1, 1 + 1):
 			for dy in range(-1, 1 + 1):
-				var tile_pos = level.get_tile_pos(global_position + Vector2(dx, dy) * 7.0)
+				var tile_pos = level.get_tile_pos(global_position + Vector2(dx, dy) * 3.0)
 				if level.get_tile(tile_pos) == level.CORRUPTED:
+					print("died to corrupted tile.")
 					health = 0
 					break	
 
@@ -108,7 +109,10 @@ func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 	if area is Bullet:
 		health -= area.damage
 		area.explode()
-	elif area.get_parent() is Bug:
+	elif area.get_parent() is Bug and area.is_in_group("damage"):
+		if area.get_parent().time_alive < 1.0:
+			return
+		print("died to enemy.")
 		health = 0
 		area.get_parent().can_spawn_file = false
 		area.get_parent().explode()

@@ -35,6 +35,9 @@ size = Vector2(6, 5.8333335)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evhp6"]
 size = Vector2(14, 12)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgkba"]
+size = Vector2(10, 8)
+
 [node name="Bug" type="CharacterBody2D" unique_id=564781483]
 z_index = 1
 collision_layer = 2
@@ -66,5 +69,10 @@ offset_bottom = -10.0
 
 [node name="BulletSpawnPoint" type="Node2D" parent="." unique_id=792131862]
 position = Vector2(0, -8)
+
+[node name="DamageHitbox" type="Area2D" parent="." unique_id=1808964222 groups=["damage"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox" unique_id=1432547279]
+shape = SubResource("RectangleShape2D_wgkba")
 
 [connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]
