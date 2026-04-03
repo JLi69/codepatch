@@ -57,8 +57,10 @@ func get_level_size() -> int:
 			return 7
 		7:
 			return 8
-		_:
+		8, 9:
 			return 9
+		_:
+			return 10
 
 func spawn_enemy(id: String, tile_pos: Vector2i) -> bool:
 	if !(id in enemy_scenes):
@@ -139,6 +141,19 @@ func _ready() -> void:
 			var file = file_scene.instantiate()
 			file.global_position = pos
 			add_child(file)
+	
+	# Generate corrupted rooms if this is a corrupted level
+	if theme == "C0RRUPT3D":
+		for room: Vector2i in rooms:
+			if room in patch_rooms:
+				continue
+			if randi() % 2 != 0:
+				continue
+			for x in range(1, ROOM_SIZE - 1):
+				for y in range(1, ROOM_SIZE - 1):
+					var tile_pos: Vector2i = room * ROOM_SIZE + Vector2i(x, y)
+					if randi() % 3 == 0:
+						set_tile(tile_pos, CORRUPTED)
 	
 	# Initialize the A* Grid
 	var used_rect: Rect2i = $TileMapLayer.get_used_rect()

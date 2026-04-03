@@ -39,6 +39,9 @@ func _process(delta: float) -> void:
 
 func load_level(level_theme: String = "") -> void:
 	var level: Level = level_scene.instantiate()
+	# Immediately start corrupting the level if we have a SEGFAULT
+	if level_theme == "SEGFAULT":
+		level.corruption_timer = 2.0
 	level.level_num = current_level
 	level.theme = level_theme
 	add_child(level)

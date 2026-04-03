@@ -11,7 +11,7 @@ func set_hp(health: int, max_health: int) -> void:
 
 func set_score(score: int) -> void:
 	if score == 1:
-		$Score.text = "1 bit" % score
+		$Score.text = "1 bit"
 	else:
 		$Score.text = "%d bits" % score
 
