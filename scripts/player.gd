@@ -8,14 +8,14 @@ const DEFAULT_MAX_HEALTH: int = 32
 const DEFAULT_SHOOT_COOLDOWN: float = 0.5
 
 # Stats that can be upgraded
-var speed: float = DEFAULT_SPEED
+var speed: float = 1.0
 var max_health: int = DEFAULT_MAX_HEALTH
 var shoot_cooldown: float = DEFAULT_SHOOT_COOLDOWN
 var bullet_count: int = 1
 var bullet_damage: int = 1
 var score_multiplier: float = 1.0
-# In radians
-var bullet_spread: float = deg_to_rad(60.0)
+# In degrees
+var bullet_spread: float = 60.0
 
 var free_rerolls: int = 0
 var free_upgrades: int = 0
@@ -77,7 +77,7 @@ func _process(delta: float) -> void:
 	if !can_move:
 		velocity = Vector2.ZERO
 	
-	velocity = velocity.normalized() * speed
+	velocity = velocity.normalized() * speed * DEFAULT_SPEED
 	if speed_time > 0.0:
 		velocity *= 2.0
 	speed_time = max(speed_time - delta, 0.0)
@@ -97,6 +97,9 @@ func get_tile_position() -> Vector2i:
 
 func heal(amt: int) -> void:
 	health = min(max_health, health + amt)
+
+func clamp_value(id: String, min_val: float) -> void:
+	set(id, max(get(id), min_val))
 
 func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 	if health <= 0:

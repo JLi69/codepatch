@@ -9,7 +9,13 @@ var pulse_time: float = 0.0
 
 const POSSIBLE_EFFECTS: Array[String] = [
 	"heal",
+	"heal",
+	"heal",
+	"heal",
 	"speed",
+	"speed",
+	"bits",
+	"bits",
 	"bits",
 	"bullet",
 	"reroll",
@@ -61,6 +67,9 @@ func apply_effect(player: Player) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Player:
+		if area.get_parent().health <= 0:
+			return
+
 		queue_free()
 		var player: Player = area.get_parent()
 		apply_effect(player)

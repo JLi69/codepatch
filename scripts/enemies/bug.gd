@@ -170,14 +170,14 @@ func explode() -> void:
 	explosion.global_position = global_position
 	explosion.scale *= 0.4
 	explosion.modulate = $AnimatedSprite2D.modulate
-	level.add_child(explosion)
+	level.call_deferred("add_child", explosion)
 
 	if randf() < drop_file_probability:
 		var file: FileItem = file_scene.instantiate()
 		file.global_position = global_position
 		file.id = file_drop
 		if level:
-			level.add_child(file)
+			level.call_deferred("add_child", file)
 
 func _process(delta: float) -> void:
 	$Healthbar.update_bar(health, max_health)

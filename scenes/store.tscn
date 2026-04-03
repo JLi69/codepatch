@@ -20,9 +20,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -158.5
-offset_top = 24.0
+offset_top = 16.0
 offset_right = 158.5
-offset_bottom = 95.0
+offset_bottom = 87.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(7.099286e-07, 0.39123017, 0, 1)
@@ -51,7 +51,7 @@ grow_vertical = 2
 theme_override_constants/separation = 12
 
 [node name="Upgrade1" type="Button" parent="Buttons" unique_id=435661026]
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.5545257, 9.62615e-07, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
@@ -59,12 +59,13 @@ theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0.2175481, 1.2032687e-07, 1)
+theme_override_constants/line_spacing = 6
 theme_override_fonts/font = ExtResource("3_codmc")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "UPGRADE1"
 
 [node name="Upgrade2" type="Button" parent="Buttons" unique_id=809246005]
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.5545257, 9.62615e-07, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
@@ -72,12 +73,13 @@ theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0.2175481, 1.2032687e-07, 1)
+theme_override_constants/line_spacing = 6
 theme_override_fonts/font = ExtResource("3_codmc")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "UPGRADE2"
 
 [node name="Upgrade3" type="Button" parent="Buttons" unique_id=1692492492]
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.5545257, 9.62615e-07, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
@@ -85,8 +87,9 @@ theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0.2175481, 1.2032687e-07, 1)
+theme_override_constants/line_spacing = 6
 theme_override_fonts/font = ExtResource("3_codmc")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "UPGRADE3"
 
 [node name="BuyHeal" type="Button" parent="Buttons" unique_id=1398076769]
@@ -140,9 +143,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -183.0
-offset_top = -178.0
+offset_top = -154.0
 offset_right = 183.0
-offset_bottom = -80.0
+offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0.45882353, 0, 1)
@@ -173,4 +176,5 @@ Good luck!"
 autowrap_mode = 2
 
 [connection signal="pressed" from="Buttons/BuyHeal" to="." method="_on_buy_heal_pressed"]
+[connection signal="pressed" from="Buttons/Reroll" to="." method="_on_reroll_pressed"]
 [connection signal="pressed" from="NextLevel" to="." method="_on_next_level_pressed"]

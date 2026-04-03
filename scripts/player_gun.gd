@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 	if shoot_cooldown <= 0.0 and Input.is_action_pressed("shoot"):
 		shoot_cooldown = player.shoot_cooldown
 		var bullet_count: int = player.bullet_count
-		var spread: float = player.bullet_spread
+		var spread: float = deg_to_rad(player.bullet_spread)
 		if player.multishots_left > 0:
 			player.multishots_left -= 1
 			bullet_count = ceili(bullet_count * randf_range(1.25, 2.5))
