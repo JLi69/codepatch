@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://jvv5s4lplme3"]
+
+[ext_resource type="PackedScene" uid="uid://dmtjl5wtign51" path="res://scenes/enemies/bug.tscn" id="1_1yhgw"]
+[ext_resource type="Script" uid="uid://iy01gunp613n" path="res://scripts/enemies/corrupted_bug.gd" id="2_j0u6w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j0u6w"]
+size = Vector2(22, 20)
+
+[node name="Bug" unique_id=564781483 instance=ExtResource("1_1yhgw")]
+script = ExtResource("2_j0u6w")
+speed = 50.0
+max_health = 3
+bullet_scene = null
+score_value = 20
+drop_file_probability = 0.2
+
+[node name="CollisionShape2D" parent="BulletHitbox" parent_id_path=PackedInt32Array(153703781) index="0" unique_id=604529958]
+shape = SubResource("RectangleShape2D_j0u6w")

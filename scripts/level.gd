@@ -24,6 +24,7 @@ static var enemy_scenes: Dictionary = {
 	"red_bug" : preload("uid://bls7akohjqi2o"),
 	"yellow_bug" : preload("uid://csl4bbvxy7owe"),
 	"blue_bug" : preload("uid://dya7ogrxxfx3i"),
+	"corrupted_bug" : preload("uid://jvv5s4lplme3"),
 	"virus" : preload("uid://c1lctbj08xklh"),
 }
 
@@ -88,8 +89,11 @@ func _ready() -> void:
 		var current_weight: float = weights[enemy_id]
 		if current_weight > 0.0 and current_weight < MAX_WEIGHT:
 			weights[enemy_id] = min(weights[enemy_id] + level_num, MAX_WEIGHT)
+	# Add enemies for special levels
 	if theme == "VIRUS":
 		weights["virus"] = MAX_WEIGHT * 2.0
+	elif theme == "SEGFAULT":
+		weights["corrupted_bug"] = MAX_WEIGHT
 	# Update survive timer
 	survive_timer += 10.0 * floori(level_num / 2.0)
 	survive_timer = min(survive_timer, 100.0)
