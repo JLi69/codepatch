@@ -27,6 +27,7 @@ static var enemy_scenes: Dictionary = {
 	"blue_bug" : preload("uid://dya7ogrxxfx3i"),
 	"corrupted_bug" : preload("uid://jvv5s4lplme3"),
 	"virus" : preload("uid://c1lctbj08xklh"),
+	"hacker" : preload("uid://bsabr5qbxl3dt"),
 }
 
 const MAX_WEIGHT: float = 15.0
@@ -127,6 +128,11 @@ func _ready() -> void:
 		patch_rooms.push_back(rooms[index])
 	for room: Vector2i in patch_rooms:
 		var tile_pos: Vector2i = room * ROOM_SIZE + Vector2i(randi_range(2, ROOM_SIZE - 2), randi_range(2, ROOM_SIZE - 2))
+		
+		if theme == "SECURITY BREACH":
+			spawn_enemy("hacker", tile_pos)
+			continue
+
 		var pos: Vector2 = Vector2(tile_pos * tile_sz) + tile_sz / 2.0
 		var patch_file = patch_file_scene.instantiate()
 		patch_file.global_position = pos

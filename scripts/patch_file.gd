@@ -3,6 +3,7 @@ extends Area2D
 @export var explosion_scene: PackedScene
 
 var pulse_time: float = 0.0
+var can_heal: bool = false
 @onready var glow_offset: float = randf_range(0.0, 2.0 * PI)
 
 func _process(delta: float) -> void:
@@ -18,6 +19,8 @@ func _on_area_entered(area: Area2D) -> void:
 		queue_free()
 		var player: Player = area.get_parent()
 		player.add_score(64)
+		if can_heal:
+			player.heal(int(player.max_health * 0.4))
 		player.patch_files += 1
 		
 		var explosion: GPUParticles2D = explosion_scene.instantiate()
