@@ -41,6 +41,7 @@ func _ready() -> void:
 
 	# Explosion effect when the enemy first spawns in
 	if level:
+		SfxManager.play_at("pop", global_position, level)
 		var explosion: GPUParticles2D = explosion_scene.instantiate()
 		explosion.global_position = global_position
 		explosion.scale *= 0.4
@@ -166,6 +167,7 @@ func handle_path_update(delta: float) -> bool:
 	return false
 
 func explode() -> void:
+	SfxManager.play_at("explosion", global_position, level)
 	queue_free()
 	if player.health > 0:
 		player.add_score(score_value)

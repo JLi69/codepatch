@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dva5f6deahy2b"]
+
+[ext_resource type="PackedScene" uid="uid://d2ts34pp1f56f" path="res://scenes/sfx/explosion_sfx.tscn" id="1_4ttdo"]
+[ext_resource type="AudioStream" uid="uid://chjgql66hoohd" path="res://assets/sfx/shoot.wav" id="2_fcj5w"]
+
+[node name="Pew" unique_id=1211830155 instance=ExtResource("1_4ttdo")]
+stream = ExtResource("2_fcj5w")
+volume_db = -10.0
+bus = &"Sfx"

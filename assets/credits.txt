@@ -6,6 +6,7 @@ By Nullptr Error
 Made with <3 using the Godot Game Engine.
 
 Sound effects generated with jsfxr (https://sfxr.me/)
+(third party sound effects listed below)
 
 THIRD PARTY RESOURCES USED
 --------------------------
@@ -18,3 +19,8 @@ File: click.wav
 Author: Kenney (https://kenney.nl)
 URL: https://kenney.nl/assets/ui-audio
 License: CC0
+
+File: pop.wav
+Author: Vilkas_Sound 
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+URL: https://freesound.org/people/Vilkas_Sound/sounds/463393/

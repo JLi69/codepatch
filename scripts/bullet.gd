@@ -10,6 +10,7 @@ var damage: int = 1
 @export var use_modulate_for_explosion: bool = false
 @export var explosion_color: Color = Color.WHITE
 @export var can_destroy_corruption: bool = false
+@export var play_pew: bool = false
 @onready var level: Level = get_node_or_null("/root/Main/Level")
 
 func _process(delta: float) -> void:
@@ -27,6 +28,8 @@ func _on_body_entered(body: Node2D) -> void:
 		explode()
 
 func explode() -> void:
+	if play_pew:
+		SfxManager.play_at("pew", global_position, level)
 	queue_free()
 	if level:
 		var explosion: GPUParticles2D = explosion_scene.instantiate()

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d2ts34pp1f56f"]
+
+[ext_resource type="AudioStream" uid="uid://d0u8kxq61qeiy" path="res://assets/sfx/explosion.wav" id="1_fd7b1"]
+[ext_resource type="Script" uid="uid://bo05lttpn7ahp" path="res://scripts/sfx.gd" id="2_jsvmf"]
+
+[node name="ExplosionSfx" type="AudioStreamPlayer2D" unique_id=1211830155]
+stream = ExtResource("1_fd7b1")
+attenuation = 1.5
+bus = &"Sfx"
+script = ExtResource("2_jsvmf")

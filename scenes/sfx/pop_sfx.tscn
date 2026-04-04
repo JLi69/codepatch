@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b8vtf65o7x62h"]
+
+[ext_resource type="PackedScene" uid="uid://d2ts34pp1f56f" path="res://scenes/sfx/explosion_sfx.tscn" id="1_2fymq"]
+[ext_resource type="AudioStream" uid="uid://ciihxaqsqgd5v" path="res://assets/sfx/pop.wav" id="2_njkwe"]
+
+[node name="Pop" unique_id=1211830155 instance=ExtResource("1_2fymq")]
+stream = ExtResource("2_njkwe")
+volume_db = -5.0
