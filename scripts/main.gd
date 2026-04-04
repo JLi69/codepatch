@@ -26,8 +26,7 @@ const LEVEL_DESCRIPTIONS: Dictionary = {
 
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-	load_level()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func get_hud() -> HUD:
 	return $UI/HUD
@@ -45,6 +44,11 @@ func _process(delta: float) -> void:
 		else:
 			$UI/HUD.set_survive_timer(0.0, false)
 
+func reset() -> void:
+	current_level = 0
+	time = 0.0
+	player.reset()
+
 func load_level(level_theme: String = "") -> void:
 	var level: Level = level_scene.instantiate()
 	# Immediately start corrupting the level if we have a SEGFAULT
@@ -53,3 +57,6 @@ func load_level(level_theme: String = "") -> void:
 	level.level_num = current_level
 	level.theme = level_theme
 	add_child(level)
+
+func on_main_menu() -> bool:
+	return $UI/MainMenu.visible

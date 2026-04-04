@@ -40,6 +40,9 @@ func set_survive_timer(time: float, run_timer: bool) -> void:
 	$Survive.text = "Survive! %ds" % int(time)
 
 func _process(_delta: float) -> void:
+	if $/root/Main.on_main_menu():
+		return
+
 	if Input.is_action_just_pressed("pause"):
 		$Pause.visible = !$Pause.visible
 		get_tree().paused = !get_tree().paused

@@ -6,6 +6,7 @@ class_name Player
 const DEFAULT_SPEED: float = 96.0
 const DEFAULT_MAX_HEALTH: int = 32
 const DEFAULT_SHOOT_COOLDOWN: float = 0.5
+const DEFAULT_BULLET_SPREAD: float = 60.0
 
 # Stats that can be upgraded
 var speed: float = 1.0
@@ -15,7 +16,7 @@ var bullet_count: int = 1
 var bullet_damage: int = 1
 var score_multiplier: float = 1.0
 # In degrees
-var bullet_spread: float = 60.0
+var bullet_spread: float = DEFAULT_BULLET_SPREAD
 
 var free_rerolls: int = 0
 var free_upgrades: int = 0
@@ -28,6 +29,24 @@ var can_move: bool = true
 
 @export var explosion_scene: PackedScene
 @onready var hud: HUD = $/root/Main.get_hud()
+
+func reset() -> void:
+	speed = 1.0
+	max_health = DEFAULT_MAX_HEALTH
+	shoot_cooldown = DEFAULT_SHOOT_COOLDOWN
+	bullet_count = 1
+	bullet_damage = 1
+	score_multiplier = 1.0
+	bullet_spread = 60.0
+	
+	health = max_health
+	free_rerolls = 0
+	free_upgrades = 0
+	speed_time = 0.0
+	multishots_left = 0
+	score = 0
+	patch_files = 0
+	can_move = true
 
 func _process(delta: float) -> void:
 	hud.set_hp(health, max_health)
