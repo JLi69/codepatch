@@ -46,3 +46,6 @@ func _on_new_run_pressed() -> void:
 	main.load_level()
 	hide()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+
+func _on_credits_pressed() -> void:
+	$Credits.show()

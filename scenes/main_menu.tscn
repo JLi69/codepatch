@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://brlhdd24wj1lp" path="res://assets/glow.png" id="5_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://dj6atom66ewyb" path="res://assets/codepatch_title.png" id="7_oa1go"]
 [ext_resource type="Texture2D" uid="uid://bgdvr42i44kxe" path="res://assets/codepatch_title_background.png" id="8_tbmy8"]
+[ext_resource type="PackedScene" uid="uid://4v6tbvieeq7a" path="res://scenes/credits.tscn" id="9_jk1qb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ln24"]
 atlas = ExtResource("3_wu84c")
@@ -127,5 +128,11 @@ z_index = 3
 scale = Vector2(5, 5)
 texture = ExtResource("7_oa1go")
 
+[node name="Credits" parent="." unique_id=1282392576 instance=ExtResource("9_jk1qb")]
+visible = false
+z_index = 3
+layout_mode = 1
+
 [connection signal="pressed" from="VBoxContainer/NewRun" to="." method="_on_new_run_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

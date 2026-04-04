@@ -1,0 +1,13 @@
+CODEPATCH CREDITS
+-----------------
+
+By Nullptr Error
+
+Made with <3 using the Godot Game Engine.
+
+THIRD PARTY RESOURCES USED
+--------------------------
+
+Font: 8BitOperator 
+by Grand Chaos Productions
+License: SIL Open Font License
