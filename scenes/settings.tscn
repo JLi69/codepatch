@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://cvylj8lq44y34"]
+
+[ext_resource type="FontFile" uid="uid://rshi05d6a6ra" path="res://assets/fonts/8BitOperator/8bitOperatorPlus-Bold.ttf" id="1_5p8wc"]
+[ext_resource type="Script" uid="uid://cy04778rxjdsx" path="res://scripts/settings.gd" id="1_6wm04"]
+[ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="2_r6d6q"]
+
+[node name="Settings" type="Control" unique_id=1966864146]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6wm04")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=503289196]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 1165.0
+offset_bottom = 662.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=184996120]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 14.0
+offset_right = 319.0
+offset_bottom = 98.0
+theme_override_colors/font_shadow_color = Color(0.5254902, 0.5254902, 0.5254902, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("1_5p8wc")
+theme_override_font_sizes/font_size = 60
+text = "SETTINGS"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1819906249]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 110.0
+offset_right = 1103.0
+offset_bottom = 537.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=2015056788]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Reset" type="Button" parent="ScrollContainer/VBoxContainer" unique_id=274032529]
+custom_minimum_size = Vector2(280, 40)
+layout_mode = 2
+tooltip_text = "Reset the high score to 0 and play the intro."
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 28
+text = "Reset Progress"
+
+[node name="Confirm" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=1331691335]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Confirm" unique_id=1993911861]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 28
+text = "Are you sure?"
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/Confirm" unique_id=642605782]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="ConfirmReset" type="Button" parent="ScrollContainer/VBoxContainer/Confirm" unique_id=2013765621]
+custom_minimum_size = Vector2(280, 40)
+layout_mode = 2
+tooltip_text = "Reset the high score to 0 and play the intro."
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 28
+text = "Confirm (RESET!)"
+
+[node name="Cancel" type="Button" parent="ScrollContainer/VBoxContainer/Confirm" unique_id=1488690190]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+tooltip_text = "Reset the high score to 0 and play the intro."
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 28
+text = "Cancel"
+
+[node name="Back" type="Button" parent="." unique_id=1864422271]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 577.0
+offset_right = 166.0
+offset_bottom = 623.0
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 28
+text = "< Back"
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Confirm/ConfirmReset" to="." method="_on_confirm_reset_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Confirm/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

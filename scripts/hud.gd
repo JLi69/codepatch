@@ -68,8 +68,8 @@ func set_level(level_num: int, level_theme: String) -> void:
 		$Level.text = "Level %d\n\"%s\"" % [ level_num, level_theme ]
 
 func set_rerolls_and_upgrades(rerolls: int, upgrades: int) -> void:
-	$Rerolls.text = "Free rerolls: %d" % rerolls
-	$Upgrades.text = "Free upgrades: %d" % upgrades
+	$Rerolls.text = "rerolls: %d" % rerolls
+	$Upgrades.text = "upgrades: %d" % upgrades
 
 func _on_return_pressed() -> void:
 	$Pause.hide()
@@ -85,4 +85,7 @@ func _on_main_menu_pressed() -> void:
 	$/root/Main/Level.queue_free()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	hide_game_over()
+
+func _on_settings_pressed() -> void:
+	$/root/Main.show_settings(false)
 

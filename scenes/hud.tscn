@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://6wiq7tlmlqa0" path="res://assets/patch_file.png" id="3_6fi6k"]
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="5_uo2fv"]
 [ext_resource type="PackedScene" uid="uid://deigq21w7yvwe" path="res://scenes/store.tscn" id="6_047uy"]
+[ext_resource type="Texture2D" uid="uid://by7070e2hqscq" path="res://assets/settings_icon.png" id="7_5pdws"]
 
 [node name="HUD" type="Control" unique_id=388640673]
 process_mode = 3
@@ -53,9 +54,9 @@ horizontal_alignment = 2
 [node name="PatchFiles" type="Label" parent="." unique_id=1717504002]
 layout_mode = 0
 offset_left = 864.0
-offset_top = 524.0
+offset_top = 523.0
 offset_right = 1136.0
-offset_bottom = 550.0
+offset_bottom = 549.0
 theme_override_colors/font_shadow_color = Color(0.6296744, 0.6296749, 0.62967455, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
@@ -83,8 +84,8 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_oo0fn")
-theme_override_font_sizes/font_size = 18
-text = "Free Rerolls: 0"
+theme_override_font_sizes/font_size = 16
+text = "rerolls: 0"
 horizontal_alignment = 2
 
 [node name="Upgrades" type="Label" parent="." unique_id=1124640540]
@@ -99,8 +100,8 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_oo0fn")
-theme_override_font_sizes/font_size = 18
-text = "Free Upgrades: 0"
+theme_override_font_sizes/font_size = 16
+text = "upgrades: 0"
 horizontal_alignment = 2
 
 [node name="Timer" type="Label" parent="." unique_id=2109348954]
@@ -294,6 +295,18 @@ theme_override_font_sizes/font_size = 32
 text = "Go to Main Menu 
 (will end this run!)"
 
+[node name="Settings" type="Button" parent="Pause" unique_id=982067813]
+z_index = 3
+layout_mode = 0
+offset_left = 1070.0
+offset_top = 569.0
+offset_right = 1138.0
+offset_bottom = 634.0
+icon = ExtResource("7_5pdws")
+icon_alignment = 1
+expand_icon = true
+
 [connection signal="pressed" from="GameOver/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="Pause/VBoxContainer/Return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="Pause/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Pause/Settings" to="." method="_on_settings_pressed"]

@@ -38,12 +38,6 @@ func _ready() -> void:
 		high_score = int(save_file.get_line())
 		play_intro = false
 		save_file.close()
-	
-	#  Write back into the save file
-	save_file = FileAccess.open("user://save", FileAccess.WRITE)
-	if save_file:
-		save_file.store_line(str(high_score))
-		save_file.close()
 
 func get_hud() -> HUD:
 	return $UI/HUD
@@ -100,3 +94,10 @@ func check_high_score(score: int) -> bool:
 			save_file.close()
 		return true
 	return false
+
+func show_settings(show_reset_button: bool = true) -> void:
+	if show_reset_button:
+		$UI/Settings.show_reset()
+	else:
+		$UI/Settings.hide_reset()
+	$UI/Settings.actviate()

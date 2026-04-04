@@ -49,3 +49,7 @@ func _on_new_run_pressed() -> void:
 
 func _on_credits_pressed() -> void:
 	$Credits.show()
+
+func _on_settings_pressed() -> void:
+	$/root/Main.show_settings()
+
