@@ -62,11 +62,18 @@ text = "By Nullptr Error
 
 Made with <3 using the Godot Game Engine.
 
+Sound effects generated with jsfxr (https://sfxr.me/)
+
 THIRD PARTY RESOURCES USED
 --------------------------
 
 Font: 8BitOperator 
 by Grand Chaos Productions
-License: SIL Open Font License"
+License: SIL Open Font License
+
+File: click.wav
+Author: Kenney (https://kenney.nl)
+URL: https://kenney.nl/assets/ui-audio
+License: CC0"
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

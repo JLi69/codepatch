@@ -1,6 +1,7 @@
 extends Control
 
 func _on_back_pressed() -> void:
+	$/root/Main.play_sfx("Click")
 	hide()
 
 func show_reset() -> void:
@@ -14,15 +15,18 @@ func actviate() -> void:
 	$ScrollContainer/VBoxContainer/Confirm.hide()
 
 func _on_reset_pressed() -> void:
+	$/root/Main.play_sfx("Click")
 	$ScrollContainer/VBoxContainer/Reset.hide()
 	$ScrollContainer/VBoxContainer/Confirm.show()
 
 func _on_confirm_reset_pressed() -> void:
+	$/root/Main.play_sfx("Click")
 	DirAccess.remove_absolute("user://save")
 	$/root/Main.high_score = 0
 	hide()
 
 func _on_cancel_pressed() -> void:
+	$/root/Main.play_sfx("Click")
 	$ScrollContainer/VBoxContainer/Reset.show()
 	$ScrollContainer/VBoxContainer/Confirm.hide()
 

@@ -13,3 +13,8 @@ THIRD PARTY RESOURCES USED
 Font: 8BitOperator 
 by Grand Chaos Productions
 License: SIL Open Font License
+
+File: click.wav
+Author: Kenney (https://kenney.nl)
+URL: https://kenney.nl/assets/ui-audio
+License: CC0

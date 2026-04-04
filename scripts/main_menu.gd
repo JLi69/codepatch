@@ -41,6 +41,7 @@ func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 func _on_new_run_pressed() -> void:
+	$/root/Main.play_sfx("Click")
 	get_tree().paused = false
 	main.reset()
 	main.load_level()
@@ -48,8 +49,10 @@ func _on_new_run_pressed() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 func _on_credits_pressed() -> void:
+	$/root/Main.play_sfx("Click")
 	$Credits.show()
 
 func _on_settings_pressed() -> void:
+	$/root/Main.play_sfx("Click")
 	$/root/Main.show_settings()
 

@@ -72,6 +72,7 @@ func set_rerolls_and_upgrades(rerolls: int, upgrades: int) -> void:
 	$Upgrades.text = "upgrades: %d" % upgrades
 
 func _on_return_pressed() -> void:
+	$/root/Main.play_sfx("Click")
 	$Pause.hide()
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -80,6 +81,7 @@ func activate_store() -> void:
 	$Store.activate()
 
 func _on_main_menu_pressed() -> void:
+	$/root/Main.play_sfx("Click")
 	$Pause.hide()
 	$/root/Main.show_main_menu()
 	$/root/Main/Level.queue_free()
@@ -87,5 +89,6 @@ func _on_main_menu_pressed() -> void:
 	hide_game_over()
 
 func _on_settings_pressed() -> void:
+	$/root/Main.play_sfx("Click")
 	$/root/Main.show_settings(false)
 

@@ -184,6 +184,7 @@ func apply_upgrade(index: int) -> void:
 		return
 	if player.score < upgrades[index].cost and player.free_upgrades <= 0:
 		return
+	$/root/Main.play_sfx("Click")
 	if player.free_upgrades > 0:
 		player.free_upgrades -= 1
 	else:
@@ -281,11 +282,13 @@ func _process(delta: float) -> void:
 func _on_buy_heal_pressed() -> void:
 	if player.score < HEAL_COST or player.health >= player.max_health:
 		return
+	$/root/Main.play_sfx("Click")
 	player.score -= HEAL_COST
 	player.heal(16)
 	reload_buttons()
 
 func _on_next_level_pressed() -> void:
+	$/root/Main.play_sfx("Click")
 	player.max_health += 4
 	player.health += 4
 	player.heal(16)
@@ -301,6 +304,7 @@ func _on_next_level_pressed() -> void:
 func _on_reroll_pressed() -> void:
 	if player.score < reroll_cost and player.free_rerolls <= 0:
 		return
+	$/root/Main.play_sfx("Click")
 	if player.free_rerolls > 0:
 		player.free_rerolls -= 1
 	else:

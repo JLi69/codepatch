@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://chjgql66hoohd" path="res://assets/sfx/shoot.wav" id="7_o6xl0"]
 [ext_resource type="AudioStream" uid="uid://bd7nsg8v64213" path="res://assets/sfx/pickup.wav" id="8_tipki"]
 [ext_resource type="AudioStream" uid="uid://bov5vjfv1emhb" path="res://assets/sfx/hurt.wav" id="9_85g3d"]
+[ext_resource type="AudioStream" uid="uid://qcwbvypx3cgn" path="res://assets/sfx/click.wav" id="10_choun"]
 
 [node name="Main" type="Node2D" unique_id=1303435590]
 script = ExtResource("1_sugp2")
@@ -39,12 +40,18 @@ z_index = 4
 stream = ExtResource("7_o6xl0")
 volume_db = -5.0
 max_polyphony = 4
+bus = &"Sfx"
 
 [node name="Pickup" type="AudioStreamPlayer" parent="Sfx" unique_id=2034243554]
 stream = ExtResource("8_tipki")
 max_polyphony = 4
+bus = &"Sfx"
 
 [node name="Hurt" type="AudioStreamPlayer" parent="Sfx" unique_id=2020316596]
 stream = ExtResource("9_85g3d")
 pitch_scale = 2.0
 max_polyphony = 4
+bus = &"Sfx"
+
+[node name="Click" type="AudioStreamPlayer" parent="Sfx" unique_id=821166252]
+stream = ExtResource("10_choun")
