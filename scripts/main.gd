@@ -9,6 +9,7 @@ var current_level: int = 0
 var high_score: int = 0
 var play_intro: bool = true
 @export var level_scene: PackedScene
+@export var intro_scene: PackedScene
 
 const LEVEL_THEMES: Array[String] = [
 	"VIRUS",
@@ -54,6 +55,11 @@ func _ready() -> void:
 		AudioServer.set_bus_volume_linear(master_index, master_volume)
 		AudioServer.set_bus_volume_linear(sfx_index, sfx_volume)
 		AudioServer.set_bus_volume_linear(music_index, music_volume)
+	
+	if play_intro:
+		var intro = intro_scene.instantiate()
+		intro.z_index = 4
+		$UI.add_child(intro)
 
 func get_hud() -> HUD:
 	return $UI/HUD
@@ -98,16 +104,19 @@ func show_main_menu() -> void:
 func calculate_score() -> int:
 	return player.score * 2 + player.total_bits + current_level * 32
 
+func save_highscore() -> void:
+	var save_file = FileAccess.open("user://save", FileAccess.WRITE)
+	if save_file:
+		save_file.store_line(str(high_score))
+		save_file.close()
+
 # Returns true if score beats the high score
 # Also saves the high score to disk
 func check_high_score(score: int) -> bool:
 	if score > high_score:
 		high_score = score
 		#  Write to the save file
-		var save_file = FileAccess.open("user://save", FileAccess.WRITE)
-		if save_file:
-			save_file.store_line(str(high_score))
-			save_file.close()
+		save_highscore()
 		return true
 	return false
 

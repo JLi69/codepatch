@@ -39,8 +39,11 @@ func _on_reset_pressed() -> void:
 func _on_confirm_reset_pressed() -> void:
 	$/root/Main.play_sfx("Click")
 	DirAccess.remove_absolute("user://save")
-	$/root/Main.high_score = 0
+	$/root/Main.high_score = 0	
 	hide()
+	var intro = $/root/Main.intro_scene.instantiate()
+	intro.z_index = 4
+	$/root/Main/UI.add_child(intro)
 
 func _on_cancel_pressed() -> void:
 	$/root/Main.play_sfx("Click")

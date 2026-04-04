@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c4soyhlgbaem5" path="res://scenes/hud.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://vlfq7hpvkq5s" path="res://scenes/main_menu.tscn" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cvylj8lq44y34" path="res://scenes/settings.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://bpm1a4oskjivi" path="res://scenes/intro.tscn" id="7_eb6dy"]
 [ext_resource type="AudioStream" uid="uid://chjgql66hoohd" path="res://assets/sfx/shoot.wav" id="7_o6xl0"]
 [ext_resource type="AudioStream" uid="uid://bd7nsg8v64213" path="res://assets/sfx/pickup.wav" id="8_tipki"]
 [ext_resource type="AudioStream" uid="uid://bov5vjfv1emhb" path="res://assets/sfx/hurt.wav" id="9_85g3d"]
@@ -15,6 +16,7 @@
 [node name="Main" type="Node2D" unique_id=1303435590]
 script = ExtResource("1_sugp2")
 level_scene = ExtResource("1_o5qli")
+intro_scene = ExtResource("7_eb6dy")
 
 [node name="Player" parent="." unique_id=694122342 instance=ExtResource("2_0wfyh")]
 

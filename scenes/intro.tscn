@@ -1,0 +1,181 @@
+[gd_scene format=3 uid="uid://bpm1a4oskjivi"]
+
+[ext_resource type="Script" uid="uid://dqao0xwenxv1d" path="res://scripts/intro.gd" id="1_i2l1n"]
+[ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_ioskq"]
+[ext_resource type="Texture2D" uid="uid://6wiq7tlmlqa0" path="res://assets/patch_file.png" id="2_yjqpq"]
+[ext_resource type="Texture2D" uid="uid://b8se5uf78q4ls" path="res://assets/corrupted.png" id="3_4bx60"]
+[ext_resource type="Texture2D" uid="uid://7ro15yev10hb" path="res://assets/intro_bug.png" id="5_wfs7u"]
+
+[node name="Intro" type="Control" unique_id=1666936196]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i2l1n")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1736215883]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 1165.0
+offset_bottom = 662.0
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=993309068]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 11.0
+offset_right = 976.0
+offset_bottom = 629.0
+theme_override_constants/separation = 20
+
+[node name="Label0" type="Label" parent="VBoxContainer" unique_id=952304866]
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.42745098, 0, 1)
+theme_override_fonts/font = ExtResource("1_ioskq")
+theme_override_font_sizes/font_size = 20
+text = "> After the disasterous internet crash caused at by MicroTech and its recently acquired subsidiary \"Super Scalable Servers Inc.\", MicroTech upper management has decided to start hiring human interns again."
+autowrap_mode = 2
+
+[node name="Label1" type="Label" parent="VBoxContainer" unique_id=1342932869]
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.42745098, 0, 1)
+theme_override_fonts/font = ExtResource("1_ioskq")
+theme_override_font_sizes/font_size = 20
+text = "You are one of the summer interns."
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=2003722688]
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.42745098, 0, 1)
+theme_override_fonts/font = ExtResource("1_ioskq")
+theme_override_font_sizes/font_size = 20
+text = "Your first task is to maintain a legacy codebase and work on patching bugs."
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer" unique_id=982766282]
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.42745098, 0, 1)
+theme_override_fonts/font = ExtResource("1_ioskq")
+theme_override_font_sizes/font_size = 20
+text = "Of course, it's been 30 years since anyone looked at the code so nobody has any idea how to fix the hundreds of bugs present."
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="VBoxContainer" unique_id=413347154]
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.42745098, 0, 1)
+theme_override_fonts/font = ExtResource("1_ioskq")
+theme_override_font_sizes/font_size = 20
+text = "So, a team of our most talented engineers designed and vibe coded a mind upload device to upload your consciousness into \"The Matrixverse\"."
+autowrap_mode = 2
+
+[node name="Label5" type="Label" parent="VBoxContainer" unique_id=1113764768]
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.42745098, 0, 1)
+theme_override_fonts/font = ExtResource("1_ioskq")
+theme_override_font_sizes/font_size = 20
+text = "Your job is to locate <3> patch files inside the program memory to fix any bugs that show up."
+autowrap_mode = 2
+
+[node name="Label6" type="Label" parent="VBoxContainer" unique_id=14242336]
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.42745098, 0, 1)
+theme_override_fonts/font = ExtResource("1_ioskq")
+theme_override_font_sizes/font_size = 20
+text = "
+
+
+Figure A: a patch file."
+autowrap_mode = 2
+
+[node name="FigureA" type="Sprite2D" parent="VBoxContainer/Label6" unique_id=1436373995]
+position = Vector2(35.999992, 16.999985)
+scale = Vector2(3, 3)
+texture = ExtResource("2_yjqpq")
+
+[node name="Label7" type="Label" parent="VBoxContainer" unique_id=873107675]
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.42745098, 0, 1)
+theme_override_fonts/font = ExtResource("1_ioskq")
+theme_override_font_sizes/font_size = 20
+text = "Once you collect all <3> patch files, the memory will start corrupting and you need to survive long enough to be teleported to the next level. Touching corrupted memory will instantly kill you. You can clear corrupted memory by shooting at it. Also try to avoid the very territorial cyberbugs."
+autowrap_mode = 2
+
+[node name="Label8" type="Label" parent="VBoxContainer" unique_id=2027616032]
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.42745098, 0, 1)
+theme_override_fonts/font = ExtResource("1_ioskq")
+theme_override_font_sizes/font_size = 20
+text = "
+
+
+Figure B & C: corrupted memory and a cyberbug. (don't touch!)"
+autowrap_mode = 2
+
+[node name="FigureB" type="Sprite2D" parent="VBoxContainer/Label8" unique_id=1885228585]
+position = Vector2(35.999992, 22)
+scale = Vector2(3, 3)
+texture = ExtResource("3_4bx60")
+
+[node name="FigureC" type="Sprite2D" parent="VBoxContainer/Label8" unique_id=1956242162]
+position = Vector2(114, 22)
+scale = Vector2(3, 3)
+texture = ExtResource("5_wfs7u")
+
+[node name="Label9" type="Label" parent="VBoxContainer" unique_id=91321560]
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.42745098, 0, 1)
+theme_override_fonts/font = ExtResource("1_ioskq")
+theme_override_font_sizes/font_size = 20
+text = "By the way, dying in the Matrixverse means dying in real life as well. But that's not super important. Left click to shoot, WASD/Arrow Keys to move. Make it past <Level 7> to win. Good luck!"
+autowrap_mode = 2
+
+[node name="Skip" type="Button" parent="." unique_id=119449037]
+layout_mode = 0
+offset_left = 1019.0
+offset_top = 585.0
+offset_right = 1134.0
+offset_bottom = 631.0
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_ioskq")
+theme_override_font_sizes/font_size = 28
+text = "Skip >"
+
+[node name="Next" type="Button" parent="." unique_id=1646052302]
+layout_mode = 0
+offset_right = 67.0
+offset_bottom = 29.0
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_ioskq")
+theme_override_font_sizes/font_size = 20
+text = "Next"
+
+[connection signal="pressed" from="Skip" to="." method="_on_skip_pressed"]
+[connection signal="pressed" from="Next" to="." method="_on_next_pressed"]
