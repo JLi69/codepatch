@@ -44,6 +44,8 @@ func _process(delta: float) -> void:
 		if player.multishots_left > 0:
 			player.multishots_left -= 1
 			bullet_count = ceili(bullet_count * randf_range(1.25, 2.5))
+		if bullet_count > 0:
+			$/root/Main.play_sfx("Shoot")
 		if bullet_count == 1:
 			shoot_bullet()
 		else:

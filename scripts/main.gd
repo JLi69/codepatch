@@ -80,7 +80,7 @@ func show_main_menu() -> void:
 	$UI/MainMenu.show()
 
 func calculate_score() -> int:
-	return player.score * 2 + player.total_bits + current_level * 32 + int(time)
+	return player.score * 2 + player.total_bits + current_level * 32
 
 # Returns true if score beats the high score
 # Also saves the high score to disk
@@ -101,3 +101,12 @@ func show_settings(show_reset_button: bool = true) -> void:
 	else:
 		$UI/Settings.hide_reset()
 	$UI/Settings.actviate()
+
+func play_sfx(id: String, ignore_if_playing: bool = false) -> void:
+	var sfx = get_node_or_null("Sfx/%s" % id)
+	if sfx == null:
+		return
+	if sfx is AudioStreamPlayer:
+		if ignore_if_playing and sfx.playing:
+			return
+		sfx.play()

@@ -27,6 +27,7 @@ var score: int = 0
 var total_bits: int = 0
 var patch_files: int = 0
 var can_move: bool = true
+var hurt_timer: float = 0.0
 
 @export var explosion_scene: PackedScene
 @onready var hud: HUD = $/root/Main.get_hud()
@@ -60,6 +61,9 @@ func _process(delta: float) -> void:
 	if !visible:
 		velocity = Vector2.ZERO
 		return
+
+	modulate = lerp(Color.WHITE, Color.RED, hurt_timer)
+	hurt_timer = max(hurt_timer - delta, 0.0)
 
 	var level: Level = get_node_or_null("/root/Main/Level")
 	if health <= 0:
@@ -130,7 +134,9 @@ func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 		return
 
 	if area is Bullet:
+		$/root/Main.play_sfx("Hurt")
 		health -= area.damage
+		hurt_timer = 0.5
 		area.explode()
 	elif area.get_parent() is Bug and area.is_in_group("damage"):
 		if area.get_parent().time_alive < 1.0:

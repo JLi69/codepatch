@@ -5,6 +5,8 @@ By Nullptr Error
 
 Made with <3 using the Godot Game Engine.
 
+Sound effects generated with jsfxr (https://sfxr.me/)
+
 THIRD PARTY RESOURCES USED
 --------------------------
 
