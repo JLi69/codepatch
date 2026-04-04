@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bd7nsg8v64213" path="res://assets/sfx/pickup.wav" id="8_tipki"]
 [ext_resource type="AudioStream" uid="uid://bov5vjfv1emhb" path="res://assets/sfx/hurt.wav" id="9_85g3d"]
 [ext_resource type="AudioStream" uid="uid://qcwbvypx3cgn" path="res://assets/sfx/click.wav" id="10_choun"]
+[ext_resource type="AudioStream" uid="uid://fccw6v6fw83f" path="res://assets/music/new_audio_stream_mp_3.res" id="11_ya4ey"]
 
 [node name="Main" type="Node2D" unique_id=1303435590]
 script = ExtResource("1_sugp2")
@@ -55,3 +56,7 @@ bus = &"Sfx"
 
 [node name="Click" type="AudioStreamPlayer" parent="Sfx" unique_id=821166252]
 stream = ExtResource("10_choun")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=590152572]
+stream = ExtResource("11_ya4ey")
+bus = &"Music"

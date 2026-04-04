@@ -140,6 +140,20 @@ z_index = 3
 scale = Vector2(5, 5)
 texture = ExtResource("7_oa1go")
 
+[node name="MusicCredits" type="Label" parent="." unique_id=2004729361]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 598.0
+offset_right = 447.0
+offset_bottom = 637.0
+theme_override_colors/font_shadow_color = Color(0.5370113, 0.5370113, 0.5370113, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 24
+text = "Music by Bogart VGM (third party)
+Licensed CC-BY 4.0"
+
 [node name="Credits" parent="." unique_id=1282392576 instance=ExtResource("9_jk1qb")]
 visible = false
 z_index = 4

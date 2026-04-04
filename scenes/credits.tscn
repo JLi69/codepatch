@@ -80,6 +80,11 @@ License: CC0
 File: pop.wav
 Author: Vilkas_Sound 
 License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
-URL: https://freesound.org/people/Vilkas_Sound/sounds/463393/"
+URL: https://freesound.org/people/Vilkas_Sound/sounds/463393/
+
+File: neon_action_by_bogart_vgm.mp3
+Author: Bogart VGM
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+URL: https://opengameart.org/content/neon-action"
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

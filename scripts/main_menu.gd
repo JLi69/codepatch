@@ -42,6 +42,7 @@ func _on_quit_pressed() -> void:
 
 func _on_new_run_pressed() -> void:
 	$/root/Main.play_sfx("Click")
+	$/root/Main.start_music()
 	get_tree().paused = false
 	main.reset()
 	main.load_level()

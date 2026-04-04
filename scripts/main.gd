@@ -110,3 +110,9 @@ func play_sfx(id: String, ignore_if_playing: bool = false) -> void:
 		if ignore_if_playing and sfx.playing:
 			return
 		sfx.play()
+
+func start_music() -> void:
+	$Music.play()
+
+func stop_music() -> void:
+	$Music.stop()

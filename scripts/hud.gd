@@ -82,6 +82,7 @@ func activate_store() -> void:
 
 func _on_main_menu_pressed() -> void:
 	$/root/Main.play_sfx("Click")
+	$/root/Main.stop_music()
 	$Pause.hide()
 	$/root/Main.show_main_menu()
 	$/root/Main/Level.queue_free()

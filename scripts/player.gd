@@ -67,6 +67,7 @@ func _process(delta: float) -> void:
 
 	var level: Level = get_node_or_null("/root/Main/Level")
 	if health <= 0:
+		$/root/Main.stop_music()
 		SfxManager.play_at("explosion", global_position, level)
 		hud.set_hp(0, 0)
 		hide()
