@@ -7,6 +7,7 @@ class_name Main
 var time: float = 0.0
 var current_level: int = 0
 var high_score: int = 0
+var play_intro: bool = true
 @export var level_scene: PackedScene
 
 const LEVEL_THEMES: Array[String] = [
@@ -29,7 +30,20 @@ func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
-	# TODO: load high score
+	
+	# Load high score
+	var save_file = FileAccess.open("user://save", FileAccess.READ)
+	if save_file:
+		# We'll just assume that the high score is stored as the first line in the file
+		high_score = int(save_file.get_line())
+		play_intro = false
+		save_file.close()
+	
+	#  Write back into the save file
+	save_file = FileAccess.open("user://save", FileAccess.WRITE)
+	if save_file:
+		save_file.store_line(str(high_score))
+		save_file.close()
 
 func get_hud() -> HUD:
 	return $UI/HUD
@@ -79,6 +93,10 @@ func calculate_score() -> int:
 func check_high_score(score: int) -> bool:
 	if score > high_score:
 		high_score = score
-		# TODO: save the new high score to disk
+		#  Write to the save file
+		var save_file = FileAccess.open("user://save", FileAccess.WRITE)
+		if save_file:
+			save_file.store_line(str(high_score))
+			save_file.close()
 		return true
 	return false
