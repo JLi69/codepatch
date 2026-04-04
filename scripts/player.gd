@@ -24,6 +24,7 @@ var speed_time: float = 0.0
 var multishots_left: int = 0
 var health: int = max_health
 var score: int = 0
+var total_bits: int = 0
 var patch_files: int = 0
 var can_move: bool = true
 
@@ -39,6 +40,7 @@ func reset() -> void:
 	score_multiplier = 1.0
 	bullet_spread = 60.0
 	
+	total_bits = 0
 	health = max_health
 	free_rerolls = 0
 	free_upgrades = 0
@@ -103,7 +105,9 @@ func _process(delta: float) -> void:
 	speed_time = max(speed_time - delta, 0.0)
 
 func add_score(amt: int) -> void:
-	score += ceili(amt * score_multiplier)
+	var multiplied: int = ceili(amt * score_multiplier)
+	score += multiplied
+	total_bits += multiplied
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()

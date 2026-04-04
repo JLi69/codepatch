@@ -19,6 +19,8 @@ func set_patch_files(patch_files: int) -> void:
 	$PatchFiles.text = "%d/3" % patch_files
 
 func show_game_over() -> void:
+	$GameOver/VBoxContainer/Score.text = "Score: %d" % $/root/Main.calculate_score()
+	$GameOver/VBoxContainer/Time.text = "Time: %s, Level %d" % [ $Timer.text, $/root/Main.current_level ]
 	$GameOver.show()
 
 func hide_game_over() -> void:
@@ -51,13 +53,9 @@ func _process(_delta: float) -> void:
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	
-	if $Pause.visible:
-		$GameOver.hide()
-	else:
-		if $/root/Main/Player.health <= 0 and !$GameOver.visible:
-			show_game_over()
-		elif $/root/Main/Player.health > 0:
-			hide_game_over()
+	if $GameOver.visible:
+		$Pause.hide()
+		get_tree().paused = false
 
 func set_level(level_num: int, level_theme: String) -> void:
 	if level_theme.is_empty():
@@ -82,4 +80,5 @@ func _on_main_menu_pressed() -> void:
 	$/root/Main.show_main_menu()
 	$/root/Main/Level.queue_free()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	hide_game_over()
 

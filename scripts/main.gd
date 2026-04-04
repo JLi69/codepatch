@@ -68,3 +68,6 @@ func on_main_menu() -> bool:
 
 func show_main_menu() -> void:
 	$UI/MainMenu.show()
+
+func calculate_score() -> int:
+	return player.score * 2 + player.total_bits + current_level * 32 + int(time)
