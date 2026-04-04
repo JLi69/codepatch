@@ -39,7 +39,7 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0.42745098, 0, 1)
 theme_override_fonts/font = ExtResource("1_ioskq")
 theme_override_font_sizes/font_size = 20
-text = "> After the disasterous internet crash caused at by MicroTech and its recently acquired subsidiary \"Super Scalable Servers Inc.\", MicroTech upper management has decided to start hiring human interns again."
+text = "> After the disasterous internet crash caused by an AI hallucination at MicroTech and its recently acquired subsidiary \"Super Scalable Servers Inc.\", MicroTech upper management has decided to start hiring human interns again."
 autowrap_mode = 2
 
 [node name="Label1" type="Label" parent="VBoxContainer" unique_id=1342932869]
