@@ -102,6 +102,9 @@ func show_settings(show_reset_button: bool = true) -> void:
 		$UI/Settings.hide_reset()
 	$UI/Settings.actviate()
 
+func settings_open() -> bool:
+	return $UI/Settings.visible
+
 func play_sfx(id: String, ignore_if_playing: bool = false) -> void:
 	var sfx = get_node_or_null("Sfx/%s" % id)
 	if sfx == null:

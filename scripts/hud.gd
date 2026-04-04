@@ -49,7 +49,7 @@ func _process(_delta: float) -> void:
 	if $/root/Main.on_main_menu():
 		return
 
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and !$/root/Main.settings_open():
 		$Pause.visible = !$Pause.visible
 		get_tree().paused = !get_tree().paused
 		if get_tree().paused:
