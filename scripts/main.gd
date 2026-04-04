@@ -38,6 +38,22 @@ func _ready() -> void:
 		high_score = int(save_file.get_line())
 		play_intro = false
 		save_file.close()
+	
+	# Load settings
+	var settings: ConfigFile = ConfigFile.new()
+	var err = settings.load("user://settings.cfg")
+	if err == OK:
+		var master_volume: float = settings.get_value("volume", "master_volume", 1.0)
+		var sfx_volume: float = settings.get_value("volume", "sfx_volume", 1.0)
+		var music_volume: float = settings.get_value("volume", "music_volume", 1.0)
+		
+		var master_index: int = AudioServer.get_bus_index("Master")
+		var sfx_index: int = AudioServer.get_bus_index("Sfx")
+		var music_index: int = AudioServer.get_bus_index("Music")
+
+		AudioServer.set_bus_volume_linear(master_index, master_volume)
+		AudioServer.set_bus_volume_linear(sfx_index, sfx_volume)
+		AudioServer.set_bus_volume_linear(music_index, music_volume)
 
 func get_hud() -> HUD:
 	return $UI/HUD

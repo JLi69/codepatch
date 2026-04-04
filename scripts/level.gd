@@ -75,6 +75,8 @@ func spawn_enemy(id: String, tile_pos: Vector2i) -> bool:
 
 	var enemy = enemy_scenes[id].instantiate()
 	enemy.global_position = Vector2(tile_pos * tile_sz) + tile_sz / 2.0 
+	if (enemy.global_position - player.global_position).length() < tile_sz.x * 6.0:
+		return false
 	# Increase enemy score and health with each level
 	var health_factor: float = 1.0 + floori(level_num / 2.0) * 0.25
 	var score_factor: float = 1.0 + level_num * 0.25

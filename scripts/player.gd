@@ -143,6 +143,8 @@ func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 	elif area.get_parent() is Bug and area.is_in_group("damage"):
 		if area.get_parent().time_alive < 1.0:
 			return
+		if !area.get_parent().visible:
+			return
 		print("died to enemy.")
 		health = 0
 		area.get_parent().can_spawn_file = false

@@ -46,7 +46,80 @@ offset_bottom = 537.0
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Reset" type="Button" parent="ScrollContainer/VBoxContainer" unique_id=274032529]
+[node name="MasterVolume" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=1939179005]
+layout_mode = 2
+
+[node name="MasterSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/MasterVolume" unique_id=397360014]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/MasterVolume" unique_id=1822945946]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/MasterVolume" unique_id=237229376]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 22
+text = "Master Volume (100%)"
+
+[node name="SfxVolume" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=517542894]
+layout_mode = 2
+
+[node name="SfxSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/SfxVolume" unique_id=1818495528]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/SfxVolume" unique_id=119954680]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/SfxVolume" unique_id=2042518659]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 22
+text = "SFX Volume (100%)"
+
+[node name="MusicVolume" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=1344317528]
+layout_mode = 2
+
+[node name="MusicSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/MusicVolume" unique_id=2031781033]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer/MusicVolume" unique_id=1695855276]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/MusicVolume" unique_id=1848015314]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 22
+text = "Music Volume (100%)"
+
+[node name="ResetSettings" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=470091210]
+layout_mode = 2
+
+[node name="ResetSettings" type="Button" parent="ScrollContainer/VBoxContainer/ResetSettings" unique_id=207535731]
+custom_minimum_size = Vector2(280, 40)
+layout_mode = 2
+tooltip_text = "Reset to defaults."
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 28
+text = "Reset Settings"
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer" unique_id=441819683]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="ResetContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=2014375177]
+layout_mode = 2
+
+[node name="Reset" type="Button" parent="ScrollContainer/VBoxContainer/ResetContainer" unique_id=274032529]
 custom_minimum_size = Vector2(280, 40)
 layout_mode = 2
 tooltip_text = "Reset the high score to 0 and play the intro."
@@ -104,7 +177,11 @@ theme_override_fonts/font = ExtResource("2_r6d6q")
 theme_override_font_sizes/font_size = 28
 text = "< Back"
 
-[connection signal="pressed" from="ScrollContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/MasterVolume/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/SfxVolume/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/MusicVolume/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ResetSettings/ResetSettings" to="." method="_on_reset_settings_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ResetContainer/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/Confirm/ConfirmReset" to="." method="_on_confirm_reset_pressed"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/Confirm/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
