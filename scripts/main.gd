@@ -6,6 +6,7 @@ class_name Main
 @onready var player: Player = $/root/Main/Player
 var time: float = 0.0
 var current_level: int = 0
+var high_score: int = 0
 @export var level_scene: PackedScene
 
 const LEVEL_THEMES: Array[String] = [
@@ -28,6 +29,7 @@ func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
+	# TODO: load high score
 
 func get_hud() -> HUD:
 	return $UI/HUD
@@ -71,3 +73,12 @@ func show_main_menu() -> void:
 
 func calculate_score() -> int:
 	return player.score * 2 + player.total_bits + current_level * 32 + int(time)
+
+# Returns true if score beats the high score
+# Also saves the high score to disk
+func check_high_score(score: int) -> bool:
+	if score > high_score:
+		high_score = score
+		# TODO: save the new high score to disk
+		return true
+	return false

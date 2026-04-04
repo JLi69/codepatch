@@ -19,7 +19,11 @@ func set_patch_files(patch_files: int) -> void:
 	$PatchFiles.text = "%d/3" % patch_files
 
 func show_game_over() -> void:
-	$GameOver/VBoxContainer/Score.text = "Score: %d" % $/root/Main.calculate_score()
+	var main: Main = $/root/Main
+	var score: int = main.calculate_score()
+	$GameOver/VBoxContainer/Score.text = "Score: %d" % score
+	if main.check_high_score(score):
+		$GameOver/VBoxContainer/Score.text += "\nNEW HIGH SCORE!"
 	$GameOver/VBoxContainer/Time.text = "Time: %s, Level %d" % [ $Timer.text, $/root/Main.current_level ]
 	$GameOver.show()
 

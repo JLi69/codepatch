@@ -19,6 +19,8 @@ func _process(delta: float) -> void:
 	else:
 		return
 
+	$VBoxContainer/HighScore.text = "High Score: %d" % $/root/Main.high_score
+
 	spawn_timer -= delta
 	if spawn_timer < 0.0:
 		spawn_timer = randf_range(3.0, 6.0)
