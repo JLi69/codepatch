@@ -27,6 +27,7 @@ const LEVEL_DESCRIPTIONS: Dictionary = {
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	get_tree().paused = true
 
 func get_hud() -> HUD:
 	return $UI/HUD
@@ -47,7 +48,11 @@ func _process(delta: float) -> void:
 func reset() -> void:
 	current_level = 0
 	time = 0.0
+	if get_node_or_null("/root/Main/Level"):
+		get_node_or_null("/root/Main/Level").queue_free()
 	player.reset()
+	player.show()
+	player.modulate = Color.WHITE
 
 func load_level(level_theme: String = "") -> void:
 	var level: Level = level_scene.instantiate()
@@ -60,3 +65,6 @@ func load_level(level_theme: String = "") -> void:
 
 func on_main_menu() -> bool:
 	return $UI/MainMenu.visible
+
+func show_main_menu() -> void:
+	$UI/MainMenu.show()

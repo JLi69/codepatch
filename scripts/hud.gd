@@ -76,3 +76,10 @@ func _on_return_pressed() -> void:
 
 func activate_store() -> void:
 	$Store.activate()
+
+func _on_main_menu_pressed() -> void:
+	$Pause.hide()
+	$/root/Main.show_main_menu()
+	$/root/Main/Level.queue_free()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
