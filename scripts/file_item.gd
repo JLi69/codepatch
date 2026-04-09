@@ -76,9 +76,10 @@ func _on_area_entered(area: Area2D) -> void:
 		apply_effect(player)
 		
 		var explosion: GPUParticles2D = explosion_scene.instantiate()
-		explosion.scale *= 0.4
+		explosion.scale *= 0.2
 		explosion.global_position = global_position
 		explosion.modulate = modulate
+		explosion.modulate.a = 0.5
 		var level: Level = get_node_or_null("/root/Main/Level")
 		if level:
 			level.add_child(explosion)

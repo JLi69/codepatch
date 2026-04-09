@@ -74,8 +74,8 @@ func _process(delta: float) -> void:
 		if level:
 			var explosion: GPUParticles2D = explosion_scene.instantiate()
 			explosion.global_position = global_position
-			explosion.modulate = Color8(0xa6, 0xff, 0x00)
-			explosion.scale *= 0.5
+			explosion.modulate = Color8(0xa6, 0xff, 0x00, 0x88)
+			explosion.scale *= 0.4
 			explosion.connect("finished", hud.show_game_over)
 			level.add_child(explosion)
 		return

@@ -34,9 +34,10 @@ func explode() -> void:
 	if level:
 		var explosion: GPUParticles2D = explosion_scene.instantiate()
 		explosion.global_position = global_position
-		explosion.scale *= 0.25
+		explosion.scale *= 0.1
 		if use_modulate_for_explosion:
 			explosion.modulate = modulate
 		else:
 			explosion.modulate = explosion_color 
+		explosion.modulate.a = 0.5
 		level.add_child(explosion)

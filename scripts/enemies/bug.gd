@@ -44,8 +44,9 @@ func _ready() -> void:
 		SfxManager.play_at("pop", global_position, level)
 		var explosion: GPUParticles2D = explosion_scene.instantiate()
 		explosion.global_position = global_position
-		explosion.scale *= 0.4
+		explosion.scale *= 0.25
 		explosion.modulate = $AnimatedSprite2D.modulate
+		explosion.modulate.a = 0.5
 		level.add_child(explosion)
 
 # Returns the tile coordinates that this enemy is currently occupying
@@ -173,8 +174,9 @@ func explode() -> void:
 		player.add_score(score_value)
 	var explosion: GPUParticles2D = explosion_scene.instantiate()
 	explosion.global_position = global_position
-	explosion.scale *= 0.4
+	explosion.scale *= 0.25
 	explosion.modulate = $AnimatedSprite2D.modulate
+	explosion.modulate.a = 0.5
 	level.call_deferred("add_child", explosion)
 
 	if randf() < drop_file_probability and can_spawn_file:

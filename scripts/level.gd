@@ -5,9 +5,9 @@ class_name Level
 var level_num: int = 0
 @onready var player: Player = get_node_or_null("/root/Main/Player")
 @onready var tile_sz: Vector2i = $TileMapLayer.tile_set.tile_size
-var enemy_spawn_timer: float = 8.0
+var enemy_spawn_timer: float = 12.0
 var enemy_spawn_interval: float = 30.0
-var corruption_timer: float = 150.0
+var corruption_timer: float = 120.0
 var corruption_interval: float = 12.0
 var corruption_count: int = 0
 var survive_timer: float = 40.0
@@ -349,7 +349,8 @@ func corrupt_tiles(count: int) -> void:
 		set_tile(tile_pos, CORRUPTED)
 		var explosion: GPUParticles2D = explosion_scene.instantiate()
 		explosion.global_position = Vector2(tile_pos * tile_sz) + tile_sz / 2.0
-		explosion.scale *= 0.4
+		explosion.modulate.a = 0.5
+		explosion.scale *= 0.2
 		add_child(explosion)
 
 func _process(delta: float) -> void:

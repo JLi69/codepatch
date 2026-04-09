@@ -29,8 +29,9 @@ func _on_area_entered(area: Area2D) -> void:
 		player.patch_files += 1
 		
 		var explosion: GPUParticles2D = explosion_scene.instantiate()
-		explosion.scale *= 0.4
+		explosion.scale *= 0.2
 		explosion.global_position = global_position
+		explosion.modulate.a = 0.5
 		var level: Level = get_node_or_null("/root/Main/Level")
 		if level:
 			if player.patch_files >= 3:

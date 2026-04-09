@@ -28,6 +28,8 @@ func _process(delta: float) -> void:
 			var explosion: GPUParticles2D = explosion_scene.instantiate()
 			explosion.global_position = viewrect.size * Vector2(randf(), randf())
 			var bug: AnimatedSprite2D = $Bug.duplicate()
+			explosion.scale *= 0.8
+			explosion.modulate.a = 0.5
 			bug.global_position = explosion.global_position
 			bug.rotation = randf_range(0.0, 2.0 * PI)
 			bug.show()

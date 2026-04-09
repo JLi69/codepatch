@@ -31,8 +31,10 @@ func _process(delta: float) -> void:
 	if health <= 0:
 		var explosion: GPUParticles2D = explosion_scene.instantiate()
 		explosion.global_position = global_position
-		explosion.scale *= 0.6
+		explosion.scale *= 0.4
+		explosion.modulate.a = 0.5
 		if level:
+			SfxManager.play_at("explosion", global_position, level)
 			level.add_child(explosion)
 		player.add_score(320)
 		spawn()
