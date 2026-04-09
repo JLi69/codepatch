@@ -12,9 +12,13 @@ texture = ExtResource("1_2q6dc")
 0:0/0 = 0
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:0/animation_columns = 2
-2:0/animation_frame_0/duration = 0.5
-2:0/animation_frame_1/duration = 0.5
+2:0/animation_columns = 4
+2:0/animation_speed = 1.25
+2:0/animation_mode = 1
+2:0/animation_frame_0/duration = 0.6
+2:0/animation_frame_1/duration = 0.6
+2:0/animation_frame_2/duration = 0.5
+2:0/animation_frame_3/duration = 0.5
 2:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_w8frs"]
