@@ -8,7 +8,7 @@ var default_max_chase_dist: float
 func _ready() -> void:
 	super._ready()
 	speed = player.speed * player.DEFAULT_SPEED * 0.75
-	max_health = ceili(player.max_health * 0.75)
+	max_health = ceili(player.max_health * 0.5)
 	health = max_health
 	bullet_cooldown = player.shoot_cooldown * 1.5
 	bullet_count = player.bullet_count
