@@ -102,7 +102,7 @@ func show_main_menu() -> void:
 	$UI/MainMenu.show()
 
 func calculate_score() -> int:
-	return player.score * 2 + player.total_bits + current_level * 32
+	return player.score * 2 + player.total_bits + current_level * 256
 
 func save_highscore() -> void:
 	var save_file = FileAccess.open("user://save", FileAccess.WRITE)

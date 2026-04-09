@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dixpaau1h8236" path="res://scenes/enemies/enemy_bullet.tscn" id="2_t77sq"]
 [ext_resource type="PackedScene" uid="uid://bmvxbv854lfkj" path="res://scenes/enemies/healthbar.tscn" id="4_0t6l1"]
 [ext_resource type="PackedScene" uid="uid://ck6apcjhialvh" path="res://scenes/file_item.tscn" id="4_wgkba"]
+[ext_resource type="PackedScene" uid="uid://btccjvg6usjpw" path="res://scenes/enemies/contact_damage_zone.tscn" id="7_cqyu5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sp1hu"]
 atlas = ExtResource("2_1cphh")
@@ -74,5 +75,8 @@ position = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox" unique_id=1432547279]
 shape = SubResource("RectangleShape2D_wgkba")
+
+[node name="ContactDamageZone" parent="." unique_id=1896367740 instance=ExtResource("7_cqyu5")]
+damage = 4
 
 [connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]

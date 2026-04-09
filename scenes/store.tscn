@@ -157,7 +157,7 @@ theme_override_fonts/font = ExtResource("3_codmc")
 theme_override_font_sizes/font_size = 28
 text = "> NEXT LEVEL 
 \"LEVEL THEME\"
-(+4 MAX HP, HEAL 16HP)"
+(+4 MAX HP, HEAL 8HP)"
 
 [node name="WinMsg" type="Label" parent="." unique_id=1802593614]
 layout_mode = 0

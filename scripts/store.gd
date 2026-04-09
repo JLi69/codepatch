@@ -244,14 +244,14 @@ func setup_upgrades() -> void:
 func setup_next_level() -> void:
 	if level_theme.is_empty():
 		$NextLevel.text = """> NEXT LEVEL
-(+4 MAX HP, HEAL 16 HP)
+(+4 MAX HP, HEAL 8 HP)
 """
 		$Description.text = ""
 		return
 
 	$NextLevel.text = """> NEXT LEVEL
 "%s"
-(+4 MAX HP, HEAL 16 HP)
+(+4 MAX HP, HEAL 8 HP)
 """ % level_theme
 	$Description.text = Main.LEVEL_DESCRIPTIONS[level_theme]
 
@@ -291,7 +291,7 @@ func _on_next_level_pressed() -> void:
 	$/root/Main.play_sfx("Click")
 	player.max_health += 4
 	player.health += 4
-	player.heal(16)
+	player.heal(8)
 	player.can_move = true
 	player.modulate = Color.WHITE
 	player.show()

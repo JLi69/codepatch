@@ -16,3 +16,6 @@ drop_file_probability = 0.2
 
 [node name="CollisionShape2D" parent="BulletHitbox" parent_id_path=PackedInt32Array(153703781) index="0" unique_id=604529958]
 shape = SubResource("RectangleShape2D_j0u6w")
+
+[node name="ContactDamageZone" parent="." index="6" unique_id=1896367740]
+damage = 8

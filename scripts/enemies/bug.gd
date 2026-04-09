@@ -20,6 +20,7 @@ class_name Bug
 @export var bullet_cooldown: float = 1.0
 @onready var shoot_timer: float = bullet_cooldown
 @onready var health = max_health
+var damage_factor: float = 1.0
 var path: PackedVector2Array = []
 var current_path_index: int = 0
 const ARRIVE_DISTANCE: float = 8.0
@@ -36,6 +37,7 @@ var update_path_timer: float = UPDATE_PATH_INTERVAL
 func _ready() -> void:
 	$Healthbar.healthbar_color = $AnimatedSprite2D.modulate
 	$Healthbar.hide()
+	$ContactDamageZone.damage = ceili(damage_factor * $ContactDamageZone.damage)
 	rotation = randf_range(0.0, 2.0 * PI)
 	speed *= randf_range(0.9, 1.25)
 

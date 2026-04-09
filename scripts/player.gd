@@ -131,6 +131,14 @@ func heal(amt: int) -> void:
 func clamp_value(id: String, min_val: float) -> void:
 	set(id, max(get(id), min_val))
 
+func damage(amt: int) -> void:
+	if health <= 0:
+		return
+	$/root/Main.play_sfx("Hurt")
+	health -= amt
+	hurt_timer = 0.5
+	health = max(health, 0)
+
 func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 	if health <= 0:
 		return
@@ -138,17 +146,6 @@ func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 	if area is Bullet:
 		if area.is_in_group("player_bullet"):
 			return
-		$/root/Main.play_sfx("Hurt")
-		health -= area.damage
-		hurt_timer = 0.5
+		damage(area.damage)
 		area.explode()
-	elif area.get_parent() is Bug and area.is_in_group("damage"):
-		if area.get_parent().time_alive < 1.0:
-			return
-		if !area.get_parent().visible:
-			return
-		print("died to enemy.")
-		health = 0
-		area.get_parent().can_spawn_file = false
-		area.get_parent().explode()
 	health = max(health, 0)

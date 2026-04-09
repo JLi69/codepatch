@@ -81,6 +81,7 @@ func spawn_enemy(id: String, tile_pos: Vector2i) -> bool:
 	var health_factor: float = 1.0 + floori(level_num / 2.0) * 0.25
 	var score_factor: float = 1.0 + level_num * 0.25
 	if enemy is Bug:
+		enemy.damage_factor = health_factor
 		enemy.score_value = floori(enemy.score_value * score_factor)
 		enemy.max_health = floori(enemy.max_health * health_factor)
 		enemy.bullet_damage = ceili(enemy.bullet_damage * health_factor)

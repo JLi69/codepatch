@@ -11,3 +11,6 @@ drop_file_probability = 0.3
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=472215569]
 modulate = Color(0.99692446, 0.00021389306, 0.00011782408, 1)
+
+[node name="ContactDamageZone" parent="." index="6" unique_id=1896367740]
+damage = 8

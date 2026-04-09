@@ -51,9 +51,9 @@ func _process(delta: float) -> void:
 			shoot_bullet()
 		elif bullet_count == 2:
 			shoot_bullet()
-			shoot_bullet(0.0, 1.25)
+			shoot_bullet(0.0, 1.4)
 		elif bullet_count % 2 == 0:
-			shoot_bullet(0.0, 1.25)
+			shoot_bullet(0.0, 1.4)
 			for i in range(bullet_count - 1):
 				var frac: float = (i - (bullet_count - 2) / 2.0) / float(bullet_count - 2)
 				var angle_offset: float = frac * spread

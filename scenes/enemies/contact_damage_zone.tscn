@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://btccjvg6usjpw"]
+
+[ext_resource type="Script" uid="uid://dmw1u6sqked2i" path="res://scripts/enemies/contact_damage_zone.gd" id="1_hahhc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q46j7"]
+
+[node name="ContactDamageZone" type="Area2D" unique_id=1896367740]
+script = ExtResource("1_hahhc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=641132265]
+shape = SubResource("CircleShape2D_q46j7")
+
+[node name="Timer" type="Timer" parent="." unique_id=515291455]
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -34,3 +34,6 @@ offset_bottom = -9.0
 
 [node name="BulletSpawnPoint" parent="." index="4" unique_id=792131862]
 position = Vector2(0, 0)
+
+[node name="ContactDamageZone" parent="." index="6" unique_id=1896367740]
+damage = 12

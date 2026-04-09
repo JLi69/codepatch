@@ -42,3 +42,6 @@ sprite_frames = SubResource("SpriteFrames_h15as")
 
 [node name="CollisionShape2D" parent="DamageHitbox" parent_id_path=PackedInt32Array(1808964222) index="0" unique_id=1432547279]
 shape = SubResource("RectangleShape2D_h15as")
+
+[node name="ContactDamageZone" parent="." index="7" unique_id=1896367740]
+damage = 6
