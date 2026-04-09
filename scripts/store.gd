@@ -52,9 +52,9 @@ class Upgrade:
 	const MIN_VALUES: Dictionary = {
 		"max_health" : 1,
 		"speed" : 0.01,
-		"bullet_count" : 0,
-		"bullet_damage" : 0,
-		"bullet_spread" : 0.001,
+		"bullet_count" : 1,
+		"bullet_damage" : 1,
+		"bullet_spread" : 1.0,
 		"shoot_cooldown" : 0.001,
 		"score_multiplier" : 0.0,
 	}

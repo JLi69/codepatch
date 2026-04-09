@@ -10,7 +10,7 @@ var enemy_spawn_interval: float = 30.0
 var corruption_timer: float = 150.0
 var corruption_interval: float = 12.0
 var corruption_count: int = 0
-var survive_timer: float = 60.0
+var survive_timer: float = 40.0
 var run_survive_timer: bool = false
 var theme: String = ""
 @export var explosion_scene: PackedScene

@@ -39,7 +39,7 @@ func reset() -> void:
 	bullet_count = 1
 	bullet_damage = 1
 	score_multiplier = 1.0
-	bullet_spread = 60.0
+	bullet_spread = DEFAULT_BULLET_SPREAD
 	
 	total_bits = 0
 	health = max_health
@@ -136,6 +136,8 @@ func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 		return
 
 	if area is Bullet:
+		if area.is_in_group("player_bullet"):
+			return
 		$/root/Main.play_sfx("Hurt")
 		health -= area.damage
 		hurt_timer = 0.5

@@ -159,7 +159,6 @@ text = "Confirm (RESET!)"
 [node name="Cancel" type="Button" parent="ScrollContainer/VBoxContainer/Confirm" unique_id=1488690190]
 custom_minimum_size = Vector2(160, 40)
 layout_mode = 2
-tooltip_text = "Reset the high score to 0 and play the intro."
 theme_override_fonts/font = ExtResource("2_r6d6q")
 theme_override_font_sizes/font_size = 28
 text = "Cancel"
