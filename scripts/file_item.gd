@@ -30,17 +30,17 @@ func _ready() -> void:
 	# Set the color
 	match id:
 		"heal":
-			modulate = Color.RED
+			modulate = Color8(255, 32, 32)
 		"speed":
 			modulate = Color.YELLOW
 		"bits":
 			modulate = Color.ORANGE
 		"bullet":
-			modulate = Color8(0xa6, 0xff, 0x00)
+			modulate = Color.CYAN 
 		"reroll":
 			modulate = Color.GREEN
 		"upgrade":
-			modulate = Color.CYAN
+			modulate = Color8(64, 64, 255)
 
 func _process(delta: float) -> void:
 	pulse_time += delta
