@@ -40,6 +40,8 @@ func reset() -> void:
 	bullet_damage = 1
 	score_multiplier = 1.0
 	bullet_spread = DEFAULT_BULLET_SPREAD
+	modulate = Color.WHITE
+	hurt_timer = 0.0
 	
 	total_bits = 0
 	health = max_health
