@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 func apply_effect(player: Player) -> void:
 	match id:
 		"heal":
-			player.heal(randi_range(int(player.max_health / 4.0), int(player.max_health / 2.0)))
+			player.heal(ceili(player.max_health / 4.0))
 		"speed":
 			player.speed_time += 15.0
 		"bits":
