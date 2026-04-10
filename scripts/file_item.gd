@@ -30,7 +30,7 @@ func _ready() -> void:
 	# Set the color
 	match id:
 		"heal":
-			modulate = Color8(255, 32, 32)
+			modulate = Color8(255, 16, 16)
 		"speed":
 			modulate = Color.YELLOW
 		"bits":

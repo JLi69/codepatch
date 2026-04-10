@@ -315,7 +315,7 @@ func generate_level(width: int, height: int) -> void:
 		set_tile(tile_pos, WALL)
 
 func spawn_enemies() -> void:
-	var enemy_count: int = randi_range(2, 5) + int(clamp(level_num / 3.0, 0.0, 3.0))
+	var enemy_count: int = randi_range(2, 5) + int(clamp(level_num / 3.0, 0.0, 4.0))
 	for i in range(enemy_count):
 		var attempts_left: int = 3
 		while attempts_left > 0:

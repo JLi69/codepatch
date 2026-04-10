@@ -51,12 +51,20 @@ class Upgrade:
 
 	const MIN_VALUES: Dictionary = {
 		"max_health" : 1,
-		"speed" : 0.01,
+		"speed" : 0.05,
 		"bullet_count" : 1,
 		"bullet_damage" : 1,
 		"bullet_spread" : 1.0,
 		"shoot_cooldown" : 0.001,
 		"score_multiplier" : 0.0,
+	}
+	
+	# Disallow applying this upgrade if applying an upgrade will cause the
+	# value to fall below the value listed
+	const HARD_MIN_VALUES: Dictionary = {
+		"max_health" : 1,
+		"bullet_count" : 1,
+		"bullet_damage" : 1,
 	}
 
 	static var format_str: Dictionary = {
@@ -161,6 +169,33 @@ class Upgrade:
 
 		return msg
 
+	func can_apply(player: Player) -> bool:
+		match upgrade_type:
+			"add":
+				if !(upgrade_stat in HARD_MIN_VALUES):
+					return true
+				if player.get(upgrade_stat) is int:
+					return player.get(upgrade_stat) + int(value) >= HARD_MIN_VALUES[upgrade_stat]
+				elif player.get(upgrade_stat) is float:
+					return player.get(upgrade_stat) + value >= HARD_MIN_VALUES[upgrade_stat]
+			"double":
+				if upgrade_stat in HARD_MIN_VALUES:
+					if player.get(upgrade_stat) is int:
+						if player.get(upgrade_stat) + int(value) < HARD_MIN_VALUES[upgrade_stat]:
+							return false
+					elif player.get(upgrade_stat) is float:
+						if player.get(upgrade_stat) + value < HARD_MIN_VALUES[upgrade_stat]:
+							return false
+
+				if downgrade_stat in HARD_MIN_VALUES:
+					if player.get(downgrade_stat) is int:
+						if player.get(downgrade_stat) + int(downgrade_value) < HARD_MIN_VALUES[downgrade_stat]:
+							return false
+					elif player.get(downgrade_stat) is float:
+						if player.get(downgrade_stat) + downgrade_value < HARD_MIN_VALUES[downgrade_stat]:
+							return false
+		return true
+
 @onready var player: Player = $/root/Main/Player
 @onready var main: Main = $/root/Main
 
@@ -228,6 +263,7 @@ func reload_upgrade_button_text() -> void:
 		else:
 			upgrade_buttons[i].text += "\n(%d bits)" % upgrades[i].cost	
 		upgrade_buttons[i].disabled = upgrades[i].cost > player.score and player.free_upgrades <= 0
+		upgrade_buttons[i].disabled = upgrade_buttons[i].disabled or !upgrades[i].can_apply(player)
 
 func reload_buttons() -> void:
 	setup_buy_heal()

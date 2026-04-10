@@ -4,7 +4,7 @@ class_name Player
 
 # Default stats
 const DEFAULT_SPEED: float = 96.0
-const DEFAULT_MAX_HEALTH: int = 32
+const DEFAULT_MAX_HEALTH: int = 24
 const DEFAULT_SHOOT_COOLDOWN: float = 0.5
 const DEFAULT_BULLET_SPREAD: float = 60.0
 
